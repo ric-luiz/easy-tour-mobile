@@ -1,0 +1,60 @@
+<ion-header no-padding>
+
+  <img src="imagem/logo-easy-tour-brasil.png">
+
+</ion-header>
+
+<ion-content no-padding class="conteudo">
+
+  <ion-card class="background-transparente" no-padding>
+    <ion-card-content>
+      <ion-grid class="borda-login">
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="background-transparente">
+              <ion-label floating>
+                <ion-label> <ion-icon name="person"></ion-icon> Email</ion-label>
+              </ion-label>
+              <ion-input aria-placeholder="Digite seu Email..."></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="background-transparente">
+              <ion-label floating>
+                <ion-label> <ion-icon name="lock"></ion-icon> Senha</ion-label>
+              </ion-label>
+              <ion-input type="password"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>          
+        
+        <ion-row>
+          <ion-col>
+            <ion-item class="background-transparente">
+              <button ion-button full color="easy-tour-button-login" (click)="gotMainPage()" round>
+                ACESSAR
+              </button>
+              <br/>
+              <button ion-button full color="primary" (click)="gotMainPage()" round>                  
+                  Login Facebook  
+                </button>
+            </ion-item>            
+          </ion-col>
+        </ion-row>        
+
+        <ion-row>
+          <ion-col>
+            <p text-center>Não tem uma conta? <a>Crie uma!</a></p>
+            <p text-center><a>Esqueceu sua senha?</a></p>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

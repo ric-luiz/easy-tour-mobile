@@ -1,0 +1,65 @@
+<!--Menu esquerdo-->
+<ion-menu [content]="content" side="left">
+  <ion-header>
+    <ion-toolbar color="easy-tour-bar">
+      <ion-title>Easy-Tour</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="cor-nav-bar">
+    <ion-list>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Parceiros
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Quanto Custa?
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Ajuda
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Configurações
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!--Menu direito-->
+<ion-menu [content]="content" side="right">
+  <ion-header>
+    <ion-toolbar color="easy-tour-bar">
+      <ion-title>Roteiros Easy-Tour</ion-title>
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-content class="cor-nav-bar">
+    <ion-list>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Cultural
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Aventura
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Religioso
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Gastronomico
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Kids
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Negócios
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Eventos
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
