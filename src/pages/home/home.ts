@@ -1,3 +1,4 @@
+import { LocationTrackerProvider } from './../../providers/location-tracker/location-tracker';
 import { Geolocation } from '@ionic-native/geolocation';
 import { HomeProvider } from './../../providers/home/home';
 import { Component,ViewChild,ElementRef } from '@angular/core';
@@ -14,76 +15,75 @@ export class HomePage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
+  marcador: any;
+  conteudo: string;
 
   categorias: Array<any>;
 
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
               public homeProvider: HomeProvider,
-              public geolocation: Geolocation) {
+              public geolocation: Geolocation,
+              public locationTrackerProvider: LocationTrackerProvider) {                    
+  }
 
+  start(){
+    this.locationTrackerProvider.startTracking(() => {
+      this.refreshMap();
+    });    
+  }
+
+  stop(){
+    this.locationTrackerProvider.stopTracking();
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TarefaListPage');    
-    this.recuperarCategorias();
+    console.log('ionViewDidLoad TarefaListPage');        
     this.loadMap();
+    this.recuperarCategorias();   
+    this.start();     
   }
 
   loadMap(){
-    this.geolocation.getCurrentPosition().then((position) => {
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);
 
       let mapOptions = {
         center: latLng,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP        
-      }
+      }      
 
-      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-      this.adicionarPosicaoAtual(latLng);
-    }, (err) => {
-      console.log(err);
-    });    
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);  
+      this.adicionarPosicaoInicial();      
+  }
+
+  //Usada como callback para ficar dando refresh na posição do turista
+  refreshMap(){
+    let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);    
+    this.map.setCenter(latLng);    
+    this.marcador.setPosition(latLng);
   }
 
   //Pega a posicao atual do device
-  adicionarPosicaoAtual(latLng){    
+  adicionarPosicaoInicial(){    
 
-    let marcador = new google.maps.Marker({
+    this.marcador = new google.maps.Marker({
       map: this.map,
       animation: google.maps.Animation.DROP,
-      position: latLng,
+      position: new google.maps.LatLng(this.locationTrackerProvider.lat,this.locationTrackerProvider.lng),
       icon: {url : 'imagem/myPositionIcon.png'},
     });
 
-    let conteudo = "<h4>Você esta aqui</h4>";
+    this.conteudo = "<h4>Você esta aqui</h4>";
 
-    this.adicionarJanelaInformacao(marcador,conteudo); 
-  }
-
-  //Coloca posições customizadas
-  adicionarMarcador(){
-
-    let marcador = new google.maps.Marker({
-      map: this.map,
-      animation: google.maps.Animation.DROP,
-      position: this.map.getCenter()
-    });
-
-    let conteudo = "<h4>Informação</h4>";
-
-    this.adicionarJanelaInformacao(marcador,conteudo); 
+    this.adicionarJanelaInformacao(this.marcador, this.conteudo);  
   }
 
   adicionarJanelaInformacao(marker, content){
     let infoWindow = new google.maps.InfoWindow({
-    content: content
-    });
-  
-    google.maps.event.addListener(marker, 'click', () => {
-      infoWindow.open(this.map, marker);
-    });
+      content: content
+    });  
+    infoWindow.open(this.map, marker);
   }
 
   recuperarCategorias(){

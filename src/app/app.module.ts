@@ -9,6 +9,8 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { HttpModule } from '@angular/http';
 import { HomeProvider } from '../providers/home/home';
+import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
+import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
 
 @NgModule({
   declarations: [
@@ -28,11 +30,13 @@ import { HomeProvider } from '../providers/home/home';
     LoginPage
   ],
   providers: [
+    BackgroundGeolocation,        
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HomeProvider,
-    Geolocation
+    Geolocation,
+    LocationTrackerProvider
   ]
 })
 export class AppModule {}
