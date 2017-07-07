@@ -10,4 +10,24 @@ page-home {
     .espacamento-down {
         padding-bottom: 10%;
     }    
+
+    
+
+}
+
+.ios, .md {
+ 
+    page-home {
+ 
+      .scroll {
+        height: 100%
+      }
+ 
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+ 
+    }
+ 
 }
