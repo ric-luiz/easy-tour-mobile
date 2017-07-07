@@ -38,10 +38,10 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TarefaListPage');        
-    this.loadMap();
-    this.recuperarCategorias();   
+    console.log('ionViewDidLoad TarefaListPage');                  
     this.start();     
+    this.recuperarCategorias(); 
+    this.loadMap();
   }
 
   loadMap(){

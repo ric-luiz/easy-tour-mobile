@@ -29,8 +29,7 @@ export class LocationTrackerProvider {
       let config = {
         desiredAccuracy: 0,
         stationaryRadius: 20,
-        distanceFilter: 10, 
-        debug: true,
+        distanceFilter: 10,         
         interval: 2000
       };
 
@@ -52,8 +51,7 @@ export class LocationTrackerProvider {
       
       //Foreground tracking
       let options = {
-        frequency: 3000,
-        enableHighAccuracy: true
+        frequency: 3000        
       }
 
       this.watch = this.geolocation.watchPosition(options).subscribe((position: Geoposition) => {
