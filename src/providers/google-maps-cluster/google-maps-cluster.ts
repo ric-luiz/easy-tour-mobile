@@ -9,27 +9,30 @@ declare var google;
 export class GoogleMapsClusterProvider {
 
   marcadoresCluster: any;
-  locations: any;
+  marcadoresPonto:any;
+  pontosDoRoteiro: any;
 
-  constructor(public http: Http) {
-    console.log('Hello GoogleMapsClusterProvider Provider');  
-    this.locations = [];  
+  constructor(public http: Http) {    
+    this.pontosDoRoteiro = [];
+    this.marcadoresPonto = [];  
   }
 
-  preencherLocalizacao(pontos){        
+  preencherLocalizacaoPonto(pontos){
+    this.removerpontosDoRoteirodoMapa(); //remove os marcadores que ja estavam selecionado no roteiro (caso eles existam) 
+
     let j = 0;
     for(let i of pontos){      
-      this.locations[j] = {lat: i.ponto.latitude, lng:i.ponto.longitude };
+      this.pontosDoRoteiro[j] = {lat: i.ponto.latitude, lng:i.ponto.longitude };
       j++;
     }
-    console.log(this.locations);
+
+    //console.log(this.pontosDoRoteiro);
   }
 
   adicionarCluster(map){
     
-    if(map){
-
-      let marcadores = this.locations.map((location) => {
+    if(map){      
+      this.marcadoresPonto = this.pontosDoRoteiro.map((location) => {
         return new google.maps.Marker({
           position: location,
           animation: google.maps.Animation.DROP,
@@ -37,12 +40,18 @@ export class GoogleMapsClusterProvider {
         });
       });
 
-      this.marcadoresCluster = new MarkerClusterer(map, marcadores,{imagePath: 'assets/m'});
-
+      this.marcadoresCluster = new MarkerClusterer(map, this.marcadoresPonto,{imagePath: 'assets/m'});      
     } else {
       console.warn("O mapa deve ser carregado antes de adicionar os marcadores");
     }
 
   }
 
+  //remove todos os marcadores de um roteiro dentro do mapa
+  removerpontosDoRoteirodoMapa(){
+    if(this.marcadoresCluster != undefined){
+      //console.log(this.marcadoresCluster);
+      this.marcadoresCluster.clearMarkers();
+    }
+  }
 }

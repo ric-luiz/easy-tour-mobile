@@ -123,7 +123,7 @@ export class HomePage {
         this.pontos = data;
         //console.log(this.pontos);
         if(this.pontos[0] != undefined){
-          this.googleMapsClusterProvider.preencherLocalizacao(this.pontos);
+          this.googleMapsClusterProvider.preencherLocalizacaoPonto(this.pontos);
           this.googleMapsClusterProvider.adicionarCluster(this.map);
         }        
       },
