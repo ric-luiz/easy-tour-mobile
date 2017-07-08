@@ -8,13 +8,11 @@ declare var google;
 @Injectable()
 export class GoogleMapsClusterProvider {
 
-  marcadoresCluster: any;
-  marcadoresPonto:any;
+  marcadoresCluster: any;  
   pontosDoRoteiro: any;
 
   constructor(public http: Http) {    
-    this.pontosDoRoteiro = [];
-    this.marcadoresPonto = [];  
+    this.pontosDoRoteiro = [];    
   }
 
   preencherLocalizacaoPonto(pontos){
@@ -32,7 +30,7 @@ export class GoogleMapsClusterProvider {
   adicionarCluster(map){
     
     if(map){      
-      this.marcadoresPonto = this.pontosDoRoteiro.map((location) => {
+      let marcadoresPonto = this.pontosDoRoteiro.map((location) => {
         return new google.maps.Marker({
           position: location,
           animation: google.maps.Animation.DROP,
@@ -40,7 +38,7 @@ export class GoogleMapsClusterProvider {
         });
       });
 
-      this.marcadoresCluster = new MarkerClusterer(map, this.marcadoresPonto,{imagePath: 'assets/m'});      
+      this.marcadoresCluster = new MarkerClusterer(map, marcadoresPonto,{imagePath: 'assets/m'});      
     } else {
       console.warn("O mapa deve ser carregado antes de adicionar os marcadores");
     }
@@ -52,6 +50,7 @@ export class GoogleMapsClusterProvider {
     if(this.marcadoresCluster != undefined){
       //console.log(this.marcadoresCluster);
       this.marcadoresCluster.clearMarkers();
+      this.pontosDoRoteiro = [];  
     }
   }
 }

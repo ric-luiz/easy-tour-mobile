@@ -17,6 +17,8 @@ export class LocationTrackerProvider {
   public lat: number = 0;
   public lng: number = 0;
 
+  public centralizou = null;
+
   constructor(public http: Http, public zone: NgZone, 
               public backgroundGeolocation: BackgroundGeolocation,
               public geolocation: Geolocation) {
@@ -26,7 +28,7 @@ export class LocationTrackerProvider {
   startTracking(funcao) {
       //Rastreando no background
 
-     /* let config = {
+      let config = {
         desiredAccuracy: 0,
         stationaryRadius: 20,
         distanceFilter: 10,         
@@ -47,7 +49,7 @@ export class LocationTrackerProvider {
       });
 
       //Liga o background-geolocation.
-      this.backgroundGeolocation.start();*/
+      this.backgroundGeolocation.start();
       
       //Foreground tracking
       let options = {
@@ -62,6 +64,9 @@ export class LocationTrackerProvider {
         this.zone.run(() => {
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
+
+          if(this.centralizou == null)
+            this.centralizou = false;
         });
       
         funcao();

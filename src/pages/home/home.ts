@@ -22,11 +22,14 @@ export class HomePage {
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
   pontos: Array<any>; //lista de pontos de um roteiro
 
+  servicoDirecao: any;
+  mostrarDiracaoNoMapa: any;
+
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
               public homeProvider: HomeProvider,
               public locationTrackerProvider: LocationTrackerProvider,
-              public googleMapsClusterProvider:GoogleMapsClusterProvider) {                    
+              public googleMapsClusterProvider: GoogleMapsClusterProvider) {                    
   }  
 
   ionViewDidLoad() {
@@ -37,7 +40,7 @@ export class HomePage {
 
   }
 
-  loadMap(){
+  loadMap(){    
     let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);
 
       let mapOptions = {
@@ -62,9 +65,14 @@ export class HomePage {
 
   //Usada como callback para ficar dando refresh na posição do turista
   refreshMap(){
-    let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);    
-    this.map.setCenter(latLng);    
+    let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);         
     this.marcador.setPosition(latLng);
+
+    if(!this.locationTrackerProvider.centralizou){
+      this.locationTrackerProvider.centralizou = true;      
+      this.map.setCenter(latLng);
+    }
+
   }
 
   //Pega a posicao atual do device
@@ -123,6 +131,7 @@ export class HomePage {
         this.pontos = data;
         //console.log(this.pontos);
         if(this.pontos[0] != undefined){
+          this.limparRotaAntiga();
           this.googleMapsClusterProvider.preencherLocalizacaoPonto(this.pontos);
           this.googleMapsClusterProvider.adicionarCluster(this.map);
         }        
@@ -132,6 +141,69 @@ export class HomePage {
       }
     );
   }  
+
+  tracarRotaEntrePontosDoRoteiro(){
+    if(this.googleMapsClusterProvider.marcadoresCluster != undefined) {
+      
+      let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);    
+      let geoCoder = new google.maps.Geocoder();      
+      geoCoder.geocode(
+        {location:latLng},
+        (results, status) => {
+          if(status == google.maps.GeocoderStatus.OK) {
+            this.exibirRotaNoMapa(results[0].formatted_address);
+          }
+        }
+      );
+       
+    }
+  }
+
+  exibirRotaNoMapa(enderecoPartida){    
+    let ultimoPonto = this.googleMapsClusterProvider.pontosDoRoteiro.length - 1;
+
+    let rotaOption = {
+      origin: enderecoPartida,
+      destination: this.googleMapsClusterProvider.pontosDoRoteiro[ultimoPonto].lat+","+this.googleMapsClusterProvider.pontosDoRoteiro[ultimoPonto].lng, // Novo endereço de chegada
+      waypoints: this.montarWayPoints(),				   
+      travelMode: google.maps.TravelMode.WALKING
+    }
+    
+    this.limparRotaAntiga();
+
+    this.servicoDirecao = new google.maps.DirectionsService();
+    this.mostrarDiracaoNoMapa = new google.maps.DirectionsRenderer();
+    
+    this.mostrarDiracaoNoMapa.setMap(this.map);
+
+    this.servicoDirecao.route(rotaOption,
+      (resultado, status) => {
+        if(status == google.maps.DirectionsStatus.OK){
+          this.mostrarDiracaoNoMapa.setDirections(resultado);
+        }
+      }
+    );
+
+  }
+
+  //tiramos a ultima rota traçada entre os pontos caso o usuario clique em outro roteiro
+  limparRotaAntiga(){
+    if(this.mostrarDiracaoNoMapa != undefined){
+      //console.log(this.mostrarDiracaoNoMapa);
+      this.mostrarDiracaoNoMapa.setMap(null);
+    }
+  }
+
+  //Monta a estrtura de pontos correta para o WayPOints do google maps
+  montarWayPoints(){
+    let pontos = [];
+
+    for(let i = 0; i < this.googleMapsClusterProvider.pontosDoRoteiro.length; i++){
+      pontos[i] = {location: this.googleMapsClusterProvider.pontosDoRoteiro[i].lat+","+this.googleMapsClusterProvider.pontosDoRoteiro[i].lng};
+    }
+
+    return pontos;
+  }
 
   toggleLeftMenu() {
     this.menuCtrl.toggle();
