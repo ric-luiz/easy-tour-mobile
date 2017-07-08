@@ -26,7 +26,7 @@ export class LocationTrackerProvider {
   startTracking(funcao) {
       //Rastreando no background
 
-      let config = {
+     /* let config = {
         desiredAccuracy: 0,
         stationaryRadius: 20,
         distanceFilter: 10,         
@@ -47,7 +47,7 @@ export class LocationTrackerProvider {
       });
 
       //Liga o background-geolocation.
-      this.backgroundGeolocation.start();
+      this.backgroundGeolocation.start();*/
       
       //Foreground tracking
       let options = {
@@ -56,7 +56,7 @@ export class LocationTrackerProvider {
 
       this.watch = this.geolocation.watchPosition(options).subscribe((position: Geoposition) => {
  
-        console.log(position);
+        //console.log(position);
       
         // Run update inside of Angular's zone
         this.zone.run(() => {

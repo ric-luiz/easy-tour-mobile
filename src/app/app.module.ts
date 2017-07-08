@@ -11,6 +11,7 @@ import { HttpModule } from '@angular/http';
 import { HomeProvider } from '../providers/home/home';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
+import { GoogleMapsClusterProvider } from '../providers/google-maps-cluster/google-maps-cluster';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LocationTrackerProvider } from '../providers/location-tracker/location-
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HomeProvider,
     Geolocation,
-    LocationTrackerProvider
+    LocationTrackerProvider,
+    GoogleMapsClusterProvider,
   ]
 })
 export class AppModule {}

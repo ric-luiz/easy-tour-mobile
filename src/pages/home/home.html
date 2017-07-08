@@ -1,3 +1,51 @@
+<!--Menu esquerdo-->
+<ion-menu [content]="content" side="left">
+  <ion-header>
+    <ion-toolbar color="easy-tour-bar">
+      <ion-title>Easy-Tour</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="cor-nav-bar">
+    <ion-list>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Parceiros
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Quanto Custa?
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Ajuda
+      </button>
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar">
+        Configurações
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<!--Menu direito-->
+<ion-menu [content]="content" side="right">
+  <ion-header>
+    <ion-toolbar color="easy-tour-bar">
+      <ion-title>Roteiros Easy-Tour</ion-title>
+    </ion-toolbar>
+  </ion-header>
+ 
+  <ion-content class="cor-nav-bar">
+
+    <ion-list> 
+      <button *ngFor="let categoria of categorias" ion-item class="cor-nav-bar" color="easy-tour-bar" (click)="escolherRoteiroDeUmaCategoria(categoria)">        
+        {{categoria.nome}}
+      </button>      
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav #content swipeBackEnabled="false"></ion-nav>
+
 <ion-header>
   <ion-navbar color="easy-tour-bar">      
 

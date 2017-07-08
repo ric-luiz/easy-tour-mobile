@@ -23,8 +23,7 @@ export class LoginPage {
   }
 
   gotMainPage(){
-    this.navCtrl.push(HomePage);
-    this.navCtrl.setRoot(HomePage);
+    this.navCtrl.push(HomePage);    
   }
 
 }
