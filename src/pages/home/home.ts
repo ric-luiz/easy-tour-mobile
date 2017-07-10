@@ -152,6 +152,7 @@ export class HomePage {
         (results, status) => {
           if(status == google.maps.GeocoderStatus.OK) {
             this.exibirRotaNoMapa(results[0].formatted_address);
+            this.googleMapsClusterProvider.removerpontosDoRoteirodoMapa();
           }
         }
       );
@@ -198,7 +199,7 @@ export class HomePage {
   montarWayPoints(){
     let pontos = [];
 
-    for(let i = 0; i < this.googleMapsClusterProvider.pontosDoRoteiro.length; i++){
+    for(let i = 0; i < this.googleMapsClusterProvider.pontosDoRoteiro.length - 1; i++){
       pontos[i] = {location: this.googleMapsClusterProvider.pontosDoRoteiro[i].lat+","+this.googleMapsClusterProvider.pontosDoRoteiro[i].lng};
     }
 

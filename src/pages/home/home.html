@@ -52,8 +52,13 @@
     <ion-grid>
       <ion-row>
         <ion-col col-2><img src="imagem/icone-sol-e-mar.png"/></ion-col>
-        <ion-col col-6><ion-title color="easy-tour-bar-font" class="espacamento-top">Roteiro Sol e Mar</ion-title></ion-col>                
-        <ion-col col-2><img src="imagem/icone-play.png" (click)="tracarRotaEntrePontosDoRoteiro()" /></ion-col>
+        <ion-col col-6><ion-title color="easy-tour-bar-font" class="espacamento-top">Easy Tour</ion-title></ion-col>                
+        <ion-col col-2>
+           <button class="cor-nav-bar" (click)="tracarRotaEntrePontosDoRoteiro()" ion-button>
+              <ion-icon color="primary" name="play"></ion-icon>
+           </button>          
+          <!--<img src="imagem/icone-play.png" />-->
+          </ion-col>
         <ion-col col-2>
           <button class="cor-nav-bar" ion-button (click)="toggleLeftMenu()">
             <ion-icon name="menu"></ion-icon>

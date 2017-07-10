@@ -34,7 +34,7 @@ export class GoogleMapsClusterProvider {
         return new google.maps.Marker({
           position: location,
           animation: google.maps.Animation.DROP,
-          icon: {url : 'assets/sol-praia-icon.png'}
+          icon: {url : 'assets/easy-tour.png'}
         });
       });
 
