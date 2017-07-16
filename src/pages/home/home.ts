@@ -4,7 +4,7 @@ import { LocationTrackerProvider } from './../../providers/location-tracker/loca
 import { HomeProvider } from './../../providers/home/home';
 import { Component,ViewChild,ElementRef } from '@angular/core';
 import { NavController, ModalController } from 'ionic-angular';
-import { MenuController } from 'ionic-angular';
+import { MenuController,ToastController } from 'ionic-angular';
 
 declare var google;
 
@@ -32,7 +32,8 @@ export class HomePage {
               public modalCtrl: ModalController,
               public homeProvider: HomeProvider,
               public locationTrackerProvider: LocationTrackerProvider,
-              public googleMapsClusterProvider: GoogleMapsClusterProvider) {                    
+              public googleMapsClusterProvider: GoogleMapsClusterProvider,
+              public toastCtrl: ToastController) {                    
   }  
 
   ionViewDidLoad() {                   
@@ -120,10 +121,13 @@ export class HomePage {
         this.roteiros = data;        
         if(this.roteiros[0] != undefined){          
           this.openModalRoteiros(this.roteiros,categoriaEscolhida);
+        } else {
+          this.exibirToastAlert('Não existe roteiros cadastrados nesta categoria.',4000);
         }        
       },
       err => {
         console.log(err);
+        this.exibirToastAlert('Ocorreu um erro ao buscar os roteiros. Verifique sua conexão com a intenet.',6000);
       }
     );
     this.nomeCategoria = 'Categoria '+categoriaEscolhida.nome;
@@ -139,10 +143,13 @@ export class HomePage {
           this.limparRotaAntiga();
           this.googleMapsClusterProvider.preencherLocalizacaoPonto(this.pontos);
           this.googleMapsClusterProvider.adicionarCluster(this.map,categoriaEscolhida);
+        } else {
+          this.exibirToastAlert('Não existe pontos turísticos cadastrados para este roteiro',4000);
         }        
       },
       err => {
         console.log(err);
+        this.exibirToastAlert('Ocorreu um erro ao buscar os pontos do roteiro. Verifique sua conexão com a intenet.',6000);
       }
     );
   }  
@@ -163,6 +170,8 @@ export class HomePage {
         }
       );
        
+    } else {
+      this.exibirToastAlert('É necessário escolher um roteiro primeiro para traçar a rota.',6000);
     }
   }
 
@@ -222,6 +231,18 @@ export class HomePage {
         this.recuperarPontosRoteiro(roteiro,categoria);
       }
     });
+  }
+
+  //caso ocorra um erro exibe uma mensagem informando o usuario
+  exibirToastAlert(msg,timeDuartion) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: timeDuartion,
+      position: 'middle',
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
   }
 
   toggleLeftMenu() {

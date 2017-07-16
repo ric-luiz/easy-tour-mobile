@@ -17,13 +17,12 @@ export class LoginPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
               public login: LoginProvider,public toastCtrl: ToastController) {
-    this.usuario = new Usuario();
+    this.usuario = new Usuario();    
   }
 
   //manda o usuario para a pagina principal onde tem o mapa
   gotMainPage(){    
-    this.navCtrl.push(HomePage);    
-    /*this.navCtrl.setRoot(HomePage);*/
+    this.navCtrl.setRoot(HomePage); //como esta pagina é a root, quando setamos um novo root o usuario ja vai direto para ela
   }
 
   //manda o usuario para a pagina de cadatro
@@ -38,7 +37,7 @@ export class LoginPage {
       return;
     }
 
-    this.login.logarUsuario(this.usuario,(token) =>{
+    this.login.logarUsuario(this.usuario,(token) =>{ 
       if(token != undefined){
         this.token = token;
         this.gotMainPage();

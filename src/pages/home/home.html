@@ -51,6 +51,11 @@
 
     <ion-grid>
       <ion-row>
+        <ion-col col-2 align-self-center>
+          <button class="cor-nav-bar" ion-button (click)="toggleLeftMenu()">
+            <ion-icon name="menu"></ion-icon>
+          </button>
+        </ion-col>
         <!--<ion-col col-2 align-self-center><img src="imagem/icone-sol-e-mar.png"/></ion-col>-->
         <ion-col col-8 align-self-center><ion-title text-center color="easy-tour-bar-font">{{nomeCategoria}}</ion-title></ion-col>                
         <ion-col col-2 align-self-center>
@@ -58,12 +63,7 @@
               <ion-icon color="primary" name="play"></ion-icon>
            </button>          
           <!--<img src="imagem/icone-play.png" />-->
-        </ion-col>
-        <ion-col col-2 align-self-center>
-          <button class="cor-nav-bar" ion-button (click)="toggleLeftMenu()">
-            <ion-icon name="menu"></ion-icon>
-          </button>
-        </ion-col>
+        </ion-col>        
       </ion-row>      
     </ion-grid>
 
