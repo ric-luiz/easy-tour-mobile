@@ -70,15 +70,11 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <!--<h3>Easy Tour</h3>-->
+<ion-content>  
   <div #map id="map"></div> 
-  <!--<ion-list>    
-        <ion-item *ngFor="let categoria of categorias">
-            <p>teste {{categoria.nome}}</p>
-        </ion-item>
-    </ion-list>-->
-
+  <ion-fab bottom right>
+    <button ion-fab color="light" (click)="centralizarNoUsuario()"><ion-icon name="locate"></ion-icon></button>    
+  </ion-fab>
 </ion-content>
 
 <ion-footer>

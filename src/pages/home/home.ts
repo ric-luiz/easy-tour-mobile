@@ -79,6 +79,11 @@ export class HomePage {
 
   }
 
+  centralizarNoUsuario(){
+    let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);
+    this.map.setCenter(latLng);
+  }
+
   //Pega a posicao atual do device
   adicionarPosicaoInicial(){    
 
