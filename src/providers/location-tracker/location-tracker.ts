@@ -21,8 +21,7 @@ export class LocationTrackerProvider {
 
   constructor(public http: Http, public zone: NgZone, 
               public backgroundGeolocation: BackgroundGeolocation,
-              public geolocation: Geolocation) {
-    console.log('Hello LocationTrackerProvider Provider');
+              public geolocation: Geolocation) {    
   }
 
   startTracking(funcao) {

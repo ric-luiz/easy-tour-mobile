@@ -10,8 +10,7 @@ export class HomeProvider {
 
   apiName = 'http://tour-easy-api.herokuapp.com';
 
-  constructor(public http: Http) {
-    console.log('Hello HomeProvider Provider');
+  constructor(public http: Http) {    
   }
 
   //recupera a lista de categorias

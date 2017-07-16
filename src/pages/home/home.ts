@@ -18,6 +18,7 @@ export class HomePage {
   map: any;
   marcador: any;
   conteudo: string;
+  nomeCategoria: string = 'Easy Tour'; //nome que vai ser exibido no header da pagina
 
   categorias: Array<any>; //lista de categorias
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
@@ -34,8 +35,7 @@ export class HomePage {
               public googleMapsClusterProvider: GoogleMapsClusterProvider) {                    
   }  
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TarefaListPage');                  
+  ionViewDidLoad() {                   
     this.loadMap();
     this.recuperarCategorias();       
     this.start();
@@ -90,7 +90,7 @@ export class HomePage {
 
     this.conteudo = "<h4>Você esta aqui</h4>";
 
-    /*this.adicionarJanelaInformacao(this.marcador, this.conteudo);*/  
+    /*this.adicionarJanelaInformacao(this.marcador, this.conteudo);*/
   }
 
   //adiciona Um balão com informações em cima do Marcado passado como parametro
@@ -126,19 +126,19 @@ export class HomePage {
         console.log(err);
       }
     );
-
+    this.nomeCategoria = 'Categoria '+categoriaEscolhida.nome;
     this.toggleRightMenu();    
   }
 
   //recupera todos os pontos do roteiro escolhido
-  recuperarPontosRoteiro(roteiroEscolhido){
+  recuperarPontosRoteiro(roteiroEscolhido,categoriaEscolhida){ //a categoria serve para pegarmos a imagem correta para aqueles pontos
     this.homeProvider.recuperarPontosDoRoteiro(roteiroEscolhido).subscribe(
       data => {
         this.pontos = data;        
         if(this.pontos[0] != undefined){
           this.limparRotaAntiga();
           this.googleMapsClusterProvider.preencherLocalizacaoPonto(this.pontos);
-          this.googleMapsClusterProvider.adicionarCluster(this.map);
+          this.googleMapsClusterProvider.adicionarCluster(this.map,categoriaEscolhida);
         }        
       },
       err => {
@@ -219,7 +219,7 @@ export class HomePage {
     modal.present(); 
     modal.onDidDismiss(roteiro => {      
       if(roteiro != undefined){        
-        this.recuperarPontosRoteiro(roteiro);
+        this.recuperarPontosRoteiro(roteiro,categoria);
       }
     });
   }

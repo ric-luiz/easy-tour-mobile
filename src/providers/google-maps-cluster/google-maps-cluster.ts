@@ -20,22 +20,36 @@ export class GoogleMapsClusterProvider {
 
     let j = 0;
     for(let i of pontos){      
-      this.pontosDoRoteiro[j] = {lat: i.ponto.latitude, lng:i.ponto.longitude };
+      this.pontosDoRoteiro[j] = {lat: i.ponto.latitude, 
+                                 lng:i.ponto.longitude, 
+                                 nome: i.ponto.nome,
+                                 descricao: i.ponto.descricao
+                                };
       j++;
     }
 
     //console.log(this.pontosDoRoteiro);
   }
 
-  adicionarCluster(map){
-    
+  //Adiciano no mapa os marcadores. Usa-se os pontos para fazer Isso
+  adicionarCluster(map,categoriaEscolhida){
+    let iconeCategoriaName = 'easy-tour';
+    if(categoriaEscolhida.nome != undefined){
+      iconeCategoriaName = categoriaEscolhida.nome;
+    }
+
     if(map){      
-      let marcadoresPonto = this.pontosDoRoteiro.map((location) => {
-        return new google.maps.Marker({
+      let marcadoresPonto = this.pontosDoRoteiro.map((ponto) => {        
+        
+        let location = {lat:ponto.lat,lng:ponto.lng};
+
+        let marcador = new google.maps.Marker({
           position: location,
           animation: google.maps.Animation.DROP,
-          icon: {url : 'assets/easy-tour.png'}
+          icon: {url : 'assets/'+iconeCategoriaName+'.png'}
         });
+
+        return marcador;
       });
 
       this.marcadoresCluster = new MarkerClusterer(map, marcadoresPonto,{imagePath: 'assets/m'});      

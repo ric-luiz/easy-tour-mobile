@@ -14,7 +14,7 @@
           <ion-col>
             <ion-item class="background-transparente">
               <ion-label floating>
-                <ion-label> <ion-icon name="person"></ion-icon> Email</ion-label>
+                <ion-label> <ion-icon name="person"></ion-icon> Login ou Email</ion-label>
               </ion-label>
               <ion-input [(ngModel)]="usuario.email"></ion-input>
             </ion-item>
@@ -35,11 +35,11 @@
         <ion-row>
           <ion-col>
             <ion-item class="background-transparente">
-              <button ion-button full color="easy-tour-button-login" (click)="gotMainPage()" (click)="logarUsuario()" round>
+              <button ion-button full color="easy-tour-button-login" (click)="logarUsuario()" round>
                 ACESSAR
               </button>
               <br/>
-              <button ion-button full color="primary" (click)="gotMainPage()" round>                  
+              <button ion-button full color="primary" (click)="logarUsuario()" round>                  
                 Login Facebook  
               </button>
             </ion-item>            
