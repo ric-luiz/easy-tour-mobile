@@ -1,3 +1,4 @@
+import { RoteirosModalPage } from './../pages/roteiros-modal/roteiros-modal';
 import { LoginPage } from './../pages/login/login';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -17,7 +18,8 @@ import { GoogleMapsClusterProvider } from '../providers/google-maps-cluster/goog
   declarations: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    RoteirosModalPage
   ],
   imports: [
     BrowserModule,    
@@ -28,7 +30,8 @@ import { GoogleMapsClusterProvider } from '../providers/google-maps-cluster/goog
   entryComponents: [
     MyApp,
     HomePage,
-    LoginPage
+    LoginPage,
+    RoteirosModalPage
   ],
   providers: [
     BackgroundGeolocation,        

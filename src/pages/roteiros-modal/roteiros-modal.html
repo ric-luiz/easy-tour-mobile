@@ -1,0 +1,45 @@
+
+<ion-header>
+  <ion-toolbar color="easy-tour-bar">
+    <ion-grid>
+        <ion-row>
+          <ion-col col-2 align-self-center>
+            <ion-buttons start>
+              <button ion-button (click)="fecharModal()">
+                <span ion-text color="primary" showWhen="ios">Fechar</span>
+                <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+              </button>
+            </ion-buttons>
+          </ion-col>
+          <ion-col col-10 align-self-center>
+            <ion-title>
+              Roteiros Categoria {{categoria}}
+            </ion-title>
+          </ion-col>
+        </ion-row>
+    </ion-grid>        
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding> 
+  <ion-list>     
+    <button *ngFor="let roteiro of roteiros" ion-item (click)="fecharModalComRoteiroEscolhido(roteiro)">        
+        {{roteiro.nome}}
+    </button>      
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="easy-tour-bar">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-2 align-self-center><img src="assets/easy-tour.png"/></ion-col>
+          <ion-col col-10 align-self-center>
+            <ion-title color="easy-tour-bar-font" class="espacamento-top">        
+              Easy Tour Brasil
+            </ion-title>    
+          </ion-col>          
+        </ion-row>      
+      </ion-grid>                
+    </ion-toolbar>
+</ion-footer>

@@ -22,8 +22,9 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
-  gotMainPage(){
+  gotMainPage(){    
     this.navCtrl.push(HomePage);    
+    /*this.navCtrl.setRoot(HomePage);*/
   }
 
 }

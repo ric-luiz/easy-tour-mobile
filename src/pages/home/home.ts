@@ -1,8 +1,9 @@
+import { RoteirosModalPage } from './../roteiros-modal/roteiros-modal';
 import { GoogleMapsClusterProvider } from './../../providers/google-maps-cluster/google-maps-cluster';
 import { LocationTrackerProvider } from './../../providers/location-tracker/location-tracker';
 import { HomeProvider } from './../../providers/home/home';
 import { Component,ViewChild,ElementRef } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 import { MenuController } from 'ionic-angular';
 
 declare var google;
@@ -27,6 +28,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               public menuCtrl: MenuController,
+              public modalCtrl: ModalController,
               public homeProvider: HomeProvider,
               public locationTrackerProvider: LocationTrackerProvider,
               public googleMapsClusterProvider: GoogleMapsClusterProvider) {                    
@@ -87,9 +89,10 @@ export class HomePage {
 
     this.conteudo = "<h4>Você esta aqui</h4>";
 
-    this.adicionarJanelaInformacao(this.marcador, this.conteudo);  
+    /*this.adicionarJanelaInformacao(this.marcador, this.conteudo);*/  
   }
 
+  //adiciona Um balão com informações em cima do Marcado passado como parametro
   adicionarJanelaInformacao(marker, content){
     let infoWindow = new google.maps.InfoWindow({
       content: content
@@ -101,8 +104,7 @@ export class HomePage {
   recuperarCategorias(){
     return this.homeProvider.recuperarCategorias().subscribe(
       data => {
-        this.categorias = data;
-        //console.log(this.categorias);
+        this.categorias = data;        
       },
       err => {
         console.log(err);
@@ -110,26 +112,28 @@ export class HomePage {
     );
   }
 
+  //recupera os roteiros de uma categoria escolhida
   escolherRoteiroDeUmaCategoria(categoriaEscolhida){    
     this.homeProvider.recuperarRoteiros(categoriaEscolhida).subscribe(
       data => {
-        this.roteiros = data;
-        //console.log(this.roteiros);
-        if(this.roteiros[0] != undefined){
-          this.recuperarPontosRoteiro(this.roteiros[0]);
+        this.roteiros = data;        
+        if(this.roteiros[0] != undefined){          
+          this.openModalRoteiros(this.roteiros,categoriaEscolhida);
         }        
       },
       err => {
         console.log(err);
       }
-    );    
+    );
+
+    this.toggleRightMenu();    
   }
 
+  //recupera todos os pontos do roteiro escolhido
   recuperarPontosRoteiro(roteiroEscolhido){
     this.homeProvider.recuperarPontosDoRoteiro(roteiroEscolhido).subscribe(
       data => {
-        this.pontos = data;
-        //console.log(this.pontos);
+        this.pontos = data;        
         if(this.pontos[0] != undefined){
           this.limparRotaAntiga();
           this.googleMapsClusterProvider.preencherLocalizacaoPonto(this.pontos);
@@ -142,6 +146,7 @@ export class HomePage {
     );
   }  
 
+  //Traca a rota entre os pontos do roteiro escolhido (caso tenha sido escolhido). Atualmente esta associado ao botão de play na pagina HOME
   tracarRotaEntrePontosDoRoteiro(){
     if(this.googleMapsClusterProvider.marcadoresCluster != undefined) {
       
@@ -160,6 +165,7 @@ export class HomePage {
     }
   }
 
+  //Vai exibir rota escolhida ao ativar o tracarRotaEntrePontosDoRoteiro
   exibirRotaNoMapa(enderecoPartida){    
     let ultimoPonto = this.googleMapsClusterProvider.pontosDoRoteiro.length - 1;
 
@@ -204,6 +210,17 @@ export class HomePage {
     }
 
     return pontos;
+  }
+
+  //abre o modal que vai mostrar os roteiros daquela categoria
+  openModalRoteiros(roteiros,categoria){    
+    let modal = this.modalCtrl.create(RoteirosModalPage,{roteiros:roteiros,categoria:categoria});    
+    modal.present(); 
+    modal.onDidDismiss(roteiro => {      
+      if(roteiro != undefined){        
+        this.recuperarPontosRoteiro(roteiro);
+      }
+    });
   }
 
   toggleLeftMenu() {
