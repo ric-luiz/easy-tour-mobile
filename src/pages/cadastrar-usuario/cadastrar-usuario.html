@@ -10,13 +10,24 @@
     <ion-card-content>
       <ion-grid class="borda-login">
 
+      <ion-row>
+         <ion-col>
+           <ion-item class="background-transparente">
+              <ion-label floating>
+                <ion-label> <ion-icon name="mail"></ion-icon> Email</ion-label>
+              </ion-label>
+              <ion-input [(ngModel)]="usuario.email"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+
         <ion-row>
           <ion-col>
             <ion-item class="background-transparente">
               <ion-label floating>
-                <ion-label> <ion-icon name="person"></ion-icon> Email</ion-label>
+                <ion-label> <ion-icon name="person"></ion-icon> Login</ion-label>
               </ion-label>
-              <ion-input [(ngModel)]="usuario.email"></ion-input>
+              <ion-input [(ngModel)]="usuario.login"></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -30,17 +41,24 @@
               <ion-input type="password" [(ngModel)]="usuario.senha"></ion-input>
             </ion-item>
           </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-item class="background-transparente">
+              <ion-label floating>
+                <ion-label> <ion-icon name="lock"></ion-icon> Confirme a senha</ion-label>
+              </ion-label>
+              <ion-input type="password" [(ngModel)]="usuario.reSenha"></ion-input>
+            </ion-item>
+          </ion-col>
         </ion-row>          
         
         <ion-row>
           <ion-col>
             <ion-item class="background-transparente">
-              <button ion-button full color="easy-tour-button-login" (click)="gotMainPage()" (click)="logarUsuario()" round>
-                ACESSAR
-              </button>
-              <br/>
-              <button ion-button full color="primary" (click)="gotMainPage()" round>                  
-                Login Facebook  
+              <button ion-button full color="easy-tour-button-login" round (click)="cadastrarUsuario()">
+                Cadastrar-se
               </button>
             </ion-item>            
           </ion-col>
@@ -48,8 +66,7 @@
 
         <ion-row>
           <ion-col>
-            <p text-center>Não tem uma conta? <a (click)="cadastrarUsuario()">Crie uma!</a></p>
-            <p text-center><a>Esqueceu sua senha?</a></p>
+            <p text-center>Já tem uma conta? <a (click)="voltarParaLogin()">Faça Login!</a></p>            
           </ion-col>
         </ion-row>
 

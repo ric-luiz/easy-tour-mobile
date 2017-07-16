@@ -1,3 +1,4 @@
+import { CadastrarUsuarioPage } from './../pages/cadastrar-usuario/cadastrar-usuario';
 import { RoteirosModalPage } from './../pages/roteiros-modal/roteiros-modal';
 import { LoginPage } from './../pages/login/login';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,13 +14,16 @@ import { HomeProvider } from '../providers/home/home';
 import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { LocationTrackerProvider } from '../providers/location-tracker/location-tracker';
 import { GoogleMapsClusterProvider } from '../providers/google-maps-cluster/google-maps-cluster';
+import { CadastrarUsuarioProvider } from '../providers/cadastrar-usuario/cadastrar-usuario';
+import { LoginProvider } from '../providers/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    RoteirosModalPage
+    RoteirosModalPage,
+    CadastrarUsuarioPage
   ],
   imports: [
     BrowserModule,    
@@ -31,7 +35,8 @@ import { GoogleMapsClusterProvider } from '../providers/google-maps-cluster/goog
     MyApp,
     HomePage,
     LoginPage,
-    RoteirosModalPage
+    RoteirosModalPage,
+    CadastrarUsuarioPage
   ],
   providers: [
     BackgroundGeolocation,        
@@ -42,6 +47,8 @@ import { GoogleMapsClusterProvider } from '../providers/google-maps-cluster/goog
     Geolocation,
     LocationTrackerProvider,
     GoogleMapsClusterProvider,
+    CadastrarUsuarioProvider,
+    LoginProvider,
   ]
 })
 export class AppModule {}

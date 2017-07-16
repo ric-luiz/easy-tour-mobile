@@ -1,13 +1,10 @@
+import { LoginProvider } from './../../providers/login/login';
+import { Usuario } from './../../models/Usuario';
+import { CadastrarUsuarioPage } from './../cadastrar-usuario/cadastrar-usuario';
 import { HomePage } from './../home/home';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -15,16 +12,25 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  usuario: Usuario;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+              public login: LoginProvider) {
+    this.usuario = new Usuario();
   }
 
   gotMainPage(){    
     this.navCtrl.push(HomePage);    
     /*this.navCtrl.setRoot(HomePage);*/
+  }
+
+  cadastrarUsuario(){
+    this.navCtrl.push(CadastrarUsuarioPage);
+  }
+
+  logarUsuario(){
+    console.log(this.usuario);
+    this.login.logarUsuario(this.usuario);
   }
 
 }

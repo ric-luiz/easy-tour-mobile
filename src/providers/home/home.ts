@@ -5,10 +5,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class HomeProvider {
   static get parameters() {
-        return [[Http]];
-    }
+    return [[Http]];
+  }
 
-    apiName = 'http://tour-easy-api.herokuapp.com';
+  apiName = 'http://tour-easy-api.herokuapp.com';
 
   constructor(public http: Http) {
     console.log('Hello HomeProvider Provider');

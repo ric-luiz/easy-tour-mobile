@@ -47,7 +47,8 @@ export class HomePage {
 
       let mapOptions = {
         center: latLng,
-        zoom: 15,
+        zoom: 15,        
+        disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP        
       }      
 
@@ -70,7 +71,7 @@ export class HomePage {
     let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);         
     this.marcador.setPosition(latLng);
 
-    if(!this.locationTrackerProvider.centralizou){
+    if(!this.locationTrackerProvider.centralizou){ //caso ainda não tenha centralizado o usuario
       this.locationTrackerProvider.centralizou = true;      
       this.map.setCenter(latLng);
     }
