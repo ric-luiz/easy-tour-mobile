@@ -46,7 +46,7 @@ export class GoogleMapsClusterProvider {
         let marcador = new google.maps.Marker({
           position: location,
           animation: google.maps.Animation.DROP,
-          icon: {url : 'assets/'+iconeCategoriaName+'.png'}
+          icon: {url : 'assets/icones/'+iconeCategoriaName+'.png'}
         });
 
         return marcador;

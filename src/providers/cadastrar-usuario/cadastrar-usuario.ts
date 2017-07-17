@@ -18,7 +18,7 @@ export class CadastrarUsuarioProvider {
     headers.append('Content-Type', 'application/json' );
     let options = new RequestOptions({headers: headers});
 
-    var response = this.http.post(url,usuario,options).subscribe(data => {
+    this.http.post(url,usuario,options).subscribe(data => {
       console.log(data);
     }, err =>{
       console.log(err);

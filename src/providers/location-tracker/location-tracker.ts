@@ -4,12 +4,6 @@ import { BackgroundGeolocation } from '@ionic-native/background-geolocation';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the LocationTrackerProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
 @Injectable()
 export class LocationTrackerProvider {
 
@@ -34,14 +28,17 @@ export class LocationTrackerProvider {
         interval: 2000
       };
 
-      this.backgroundGeolocation.configure(config).subscribe((location) => {
-
-        console.log('BackgroundGeolocation:  ' + location.latitude + ',' + location.longitude);
-
+      this.backgroundGeolocation.configure(config).subscribe((location) => {        
         //Roda a atualização na zona dentro do angular
         this.zone.run(()=>{
           this.lat = location.latitude;
           this.lng = location.longitude;
+
+          if(this.centralizou == null)
+            this.centralizou = false;
+
+          funcao();
+
         });        
       }, (err) => {
         console.log(err);
@@ -66,9 +63,9 @@ export class LocationTrackerProvider {
 
           if(this.centralizou == null)
             this.centralizou = false;
-        });
-      
-        funcao();
+
+          funcao();
+        });              
       });      
   }
  

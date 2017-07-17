@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -17,7 +17,7 @@ export class LoginProvider {
     let headers = new Headers();        
     headers.append('Authorization', ['Basic',window.btoa(credenciais)].join(' '));    
 
-    var response = this.http.get(url,{headers:headers}).subscribe(data => {
+    this.http.get(url,{headers:headers}).subscribe(data => {
       var json = JSON.parse(data['_body']);      
 
       if(json.token != undefined){        

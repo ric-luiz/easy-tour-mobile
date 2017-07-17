@@ -19,6 +19,7 @@ export class HomePage {
   marcador: any;
   conteudo: string;
   nomeCategoria: string = 'Easy Tour'; //nome que vai ser exibido no header da pagina
+  nomeImagemCategoria: string = 'assets/header/easy tour.png'; //nome da imagem que sera colocada no header
 
   categorias: Array<any>; //lista de categorias
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
@@ -120,7 +121,7 @@ export class HomePage {
   }
 
   //recupera os roteiros de uma categoria escolhida
-  escolherRoteiroDeUmaCategoria(categoriaEscolhida){    
+  escolherRoteiroDeUmaCategoria(categoriaEscolhida){
     this.homeProvider.recuperarRoteiros(categoriaEscolhida).subscribe(
       data => {
         this.roteiros = data;        
@@ -135,7 +136,8 @@ export class HomePage {
         this.exibirToastAlert('Ocorreu um erro ao buscar os roteiros. Verifique sua conexão com a intenet.',6000);
       }
     );
-    this.nomeCategoria = 'Categoria '+categoriaEscolhida.nome;
+    this.nomeCategoria = categoriaEscolhida.nome;
+    this.nomeImagemCategoria = 'assets/header/'+categoriaEscolhida.nome+'.png';
     this.toggleRightMenu();    
   }
 
@@ -188,7 +190,7 @@ export class HomePage {
       origin: enderecoPartida,
       destination: this.googleMapsClusterProvider.pontosDoRoteiro[ultimoPonto].lat+","+this.googleMapsClusterProvider.pontosDoRoteiro[ultimoPonto].lng, // Novo endereço de chegada
       waypoints: this.montarWayPoints(),				   
-      travelMode: google.maps.TravelMode.WALKING
+      travelMode: google.maps.TravelMode.DRIVING
     }
     
     this.limparRotaAntiga();
