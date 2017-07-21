@@ -33,4 +33,9 @@ export class HomeProvider {
     return response;
   }
 
+  //vai recuperar os pontos que estão proximos do usuario
+  recuperarPontosProximosAoUsuario(){      
+
+  }
+
 }

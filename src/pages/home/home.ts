@@ -1,3 +1,4 @@
+import { PontosModalPage } from './../pontos-modal/pontos-modal';
 import { RoteirosModalPage } from './../roteiros-modal/roteiros-modal';
 import { GoogleMapsClusterProvider } from './../../providers/google-maps-cluster/google-maps-cluster';
 import { LocationTrackerProvider } from './../../providers/location-tracker/location-tracker';
@@ -78,8 +79,19 @@ export class HomePage {
       this.map.setCenter(latLng);
     }
 
+    this.verificarUsuarioPertoPonto();
+
   }
 
+  //verifica se o usuario esta perto de algum ponto de um roteiro
+  verificarUsuarioPertoPonto(){
+    console.log("Recuperando os pontos proximos ao usuario");
+    if(this.pontos != undefined && this.pontos.length > 0) { //se existe algum ponto sendo visto pelo usuario
+      this.homeProvider.recuperarPontosProximosAoUsuario();
+    }    
+  }
+
+  //centraliza a tela em cima da posição do usuário
   centralizarNoUsuario(){
     let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);
     this.map.setCenter(latLng);
@@ -124,7 +136,7 @@ export class HomePage {
   escolherRoteiroDeUmaCategoria(categoriaEscolhida){
     this.homeProvider.recuperarRoteiros(categoriaEscolhida).subscribe(
       data => {
-        this.roteiros = data;        
+        this.roteiros = data;                
         if(this.roteiros[0] != undefined){          
           this.openModalRoteiros(this.roteiros,categoriaEscolhida);
         } else {
@@ -139,6 +151,7 @@ export class HomePage {
     this.nomeCategoria = categoriaEscolhida.nome;
     this.nomeImagemCategoria = 'assets/header/'+categoriaEscolhida.nome+'.png';
     this.toggleRightMenu();    
+    this.pontos = new Array<any>(); //resetamos o array de pontos quando vamos escolher outro roteiro. É necessário para evitar que seja exibido o modal de outros pontos de outros roteiros       
   }
 
   //recupera todos os pontos do roteiro escolhido
@@ -160,6 +173,29 @@ export class HomePage {
       }
     );
   }  
+
+  //vai recuperar as informações dos pontos de um roteiro para serem exibidas ao usuário
+  visualizarInformacoesPontosRoteiro(roteiroEscolhido){
+    this.homeProvider.recuperarPontosDoRoteiro(roteiroEscolhido).subscribe(
+      data => {                
+        if(this.pontos[0] != undefined){
+          this.openModalPontos(data,roteiroEscolhido);
+        } else {
+          this.exibirToastAlert('Não existe pontos turísticos cadastrados para este roteiro',4000);
+        }        
+      },
+      err => {
+        console.log(err);
+        this.exibirToastAlert('Ocorreu um erro ao buscar os pontos do roteiro. Verifique sua conexão com a intenet.',6000);
+      }
+    );
+  }
+
+  //abre o modal para exibir informações dos pontos do roteiro
+  openModalPontos(pontosRoteiro,nomeRoteiro){
+    let modal = this.modalCtrl.create(PontosModalPage,{pontosRoteiro:pontosRoteiro,nomeRoteiro:nomeRoteiro});    
+    modal.present();
+  }
 
   //Traca a rota entre os pontos do roteiro escolhido (caso tenha sido escolhido). Atualmente esta associado ao botão de play na pagina HOME
   tracarRotaEntrePontosDoRoteiro(){

@@ -53,8 +53,6 @@ export class LocationTrackerProvider {
       }
 
       this.watch = this.geolocation.watchPosition(options).subscribe((position: Geoposition) => {
- 
-        //console.log(position);
       
         // Run update inside of Angular's zone
         this.zone.run(() => {

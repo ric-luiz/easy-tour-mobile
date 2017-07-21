@@ -13,7 +13,7 @@
           </ion-col>
           <ion-col col-10 align-self-center>
             <ion-title>
-              Roteiros Categoria {{categoria}}
+              Roteiro {{categoria}}
             </ion-title>
           </ion-col>
         </ion-row>
@@ -22,10 +22,32 @@
 </ion-header>
 
 <ion-content padding> 
-  <ion-list>     
-    <button *ngFor="let roteiro of roteiros" ion-item (click)="fecharModalComRoteiroEscolhido(roteiro)">        
-        {{roteiro.nome}}
-    </button>      
+  <ion-list no-border *ngFor="let roteiro of roteiros">     
+
+    <ion-list-header>
+      {{roteiro.nome}}
+    </ion-list-header>
+
+    <ion-item>
+      <ion-icon name='pin' item-start></ion-icon>
+      Ver pontos turísticos? 
+      <ion-note item-end>
+        <button ion-button round small clear color="easy-tour-bar">
+          Sim
+        </button>
+      </ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-icon name='compass' item-start></ion-icon>
+      Iniciar o roteiro
+      <ion-note item-end>
+        <button ion-button round small (click)="fecharModalComRoteiroEscolhido(roteiro)" color="easy-tour-bar">
+          Iniciar
+        </button>
+      </ion-note>
+    </ion-item>            
+
   </ion-list>
 </ion-content>
 
