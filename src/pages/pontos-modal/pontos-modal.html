@@ -1,12 +1,38 @@
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>{{nomeRoteiro}}</ion-title>
-  </ion-navbar>
-
+  <ion-toolbar color="easy-tour-bar">
+    <ion-grid>
+        <ion-row>
+          <ion-col col-12 align-self-center>
+            <ion-title>
+              {{nomeRoteiro}}
+            </ion-title> 
+          </ion-col>
+        </ion-row>
+    </ion-grid>           
+  </ion-toolbar>
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="tutorial-page">
+
+  <ion-slides pager>
+    <ion-slide *ngFor="let p of pontos" class="card-background-page">
+      <ion-toolbar>
+        <ion-buttons end small>
+          <button ion-button color="easy-tour-bar" (click)="fecharModal()">Voltar</button>
+        </ion-buttons>
+      </ion-toolbar>
+
+      <ion-card>
+        <img src="assets/imagem/cultural/{{p.ponto.nome}}.jpg"/>
+        <div class="card-title">{{p.ponto.nome}}</div>        
+        <ion-card-content text-justify>
+          <p>
+            {{p.ponto.descricao}}
+          </p>
+        </ion-card-content>
+      </ion-card>      
+    </ion-slide>    
+  </ion-slides>
 
 </ion-content>

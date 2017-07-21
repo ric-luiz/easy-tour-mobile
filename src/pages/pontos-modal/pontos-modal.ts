@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class PontosModalPage {
 
-  nomeRoteiro : string = this.navParams.get('nomeRoteiro');
+  nomeRoteiro : string = this.navParams.get('nomeRoteiro').nome;
   pontos: Array<any> = this.navParams.get('pontosRoteiro');
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public viewCtrl: ViewController) {

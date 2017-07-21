@@ -1,4 +1,3 @@
-import { PontosModalPage } from './../pontos-modal/pontos-modal';
 import { RoteirosModalPage } from './../roteiros-modal/roteiros-modal';
 import { GoogleMapsClusterProvider } from './../../providers/google-maps-cluster/google-maps-cluster';
 import { LocationTrackerProvider } from './../../providers/location-tracker/location-tracker';
@@ -20,7 +19,7 @@ export class HomePage {
   marcador: any;
   conteudo: string;
   nomeCategoria: string = 'Easy Tour'; //nome que vai ser exibido no header da pagina
-  nomeImagemCategoria: string = 'assets/header/easy tour.png'; //nome da imagem que sera colocada no header
+  nomeImagemCategoria: string = 'assets/header/Cultural.png'; //nome da imagem que sera colocada no header
 
   categorias: Array<any>; //lista de categorias
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
@@ -172,30 +171,7 @@ export class HomePage {
         this.exibirToastAlert('Ocorreu um erro ao buscar os pontos do roteiro. Verifique sua conexão com a intenet.',6000);
       }
     );
-  }  
-
-  //vai recuperar as informações dos pontos de um roteiro para serem exibidas ao usuário
-  visualizarInformacoesPontosRoteiro(roteiroEscolhido){
-    this.homeProvider.recuperarPontosDoRoteiro(roteiroEscolhido).subscribe(
-      data => {                
-        if(this.pontos[0] != undefined){
-          this.openModalPontos(data,roteiroEscolhido);
-        } else {
-          this.exibirToastAlert('Não existe pontos turísticos cadastrados para este roteiro',4000);
-        }        
-      },
-      err => {
-        console.log(err);
-        this.exibirToastAlert('Ocorreu um erro ao buscar os pontos do roteiro. Verifique sua conexão com a intenet.',6000);
-      }
-    );
-  }
-
-  //abre o modal para exibir informações dos pontos do roteiro
-  openModalPontos(pontosRoteiro,nomeRoteiro){
-    let modal = this.modalCtrl.create(PontosModalPage,{pontosRoteiro:pontosRoteiro,nomeRoteiro:nomeRoteiro});    
-    modal.present();
-  }
+  }    
 
   //Traca a rota entre os pontos do roteiro escolhido (caso tenha sido escolhido). Atualmente esta associado ao botão de play na pagina HOME
   tracarRotaEntrePontosDoRoteiro(){
