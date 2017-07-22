@@ -1,3 +1,4 @@
+import { PontoModalPage } from './../ponto-modal/ponto-modal';
 import { RoteirosModalPage } from './../roteiros-modal/roteiros-modal';
 import { GoogleMapsClusterProvider } from './../../providers/google-maps-cluster/google-maps-cluster';
 import { LocationTrackerProvider } from './../../providers/location-tracker/location-tracker';
@@ -7,7 +8,6 @@ import { NavController, ModalController } from 'ionic-angular';
 import { MenuController,ToastController } from 'ionic-angular';
 
 declare var google;
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -26,8 +26,9 @@ export class HomePage {
   pontos: Array<any>; //lista de pontos de um roteiro
   
   roteiro: any; //recebe o roteiro escolhido pelo usuario
-  distanciaMaximaPonto: number = 0.02; //distancia maxima que o turista deve esta de um ponto. Em Km.
+  distanciaMaximaPonto: number = 0.020; //distancia maxima que o turista deve esta de um ponto. Em Km.
   pontoProximo: any; //recebe o ponto mais proximo do turista de acordo com a distancia maxima
+  modalPontoProximoAberto: boolean = false; //serve para evitar que o modal seja aberto 2 vezes ao ficar dando refresh em recuperar a posição do device
 
   servicoDirecao: any;
   mostrarDiracaoNoMapa: any;
@@ -88,23 +89,22 @@ export class HomePage {
 
   //verifica se o usuario esta perto de algum ponto de um roteiro
   verificarUsuarioPertoPonto(){
-    console.log("Recuperando os pontos proximos ao usuario");
-    if(this.pontos != undefined && this.pontos.length > 0) { //se existe algum conjunto de pontos que o turista escolheu
+    /*console.log("Recuperando os pontos proximos ao usuario");*/
+    if(this.pontos != undefined && this.pontos.length > 0 && this.pontoProximo == undefined) { //se existe algum conjunto de pontos que o turista escolheu
 
-      let latLng = {lat:this.locationTrackerProvider.lat,lng:this.locationTrackerProvider.lng};
+      let latLng = {lat:this.locationTrackerProvider.lat,lng:this.locationTrackerProvider.lng};      
       this.homeProvider.recuperarPontosProximosAoUsuario(latLng,this.roteiro).subscribe(
-        data => {
-          console.log(data);
-          let pontoMaisProximo;
+        data => {                    
 
-          for(let pontosProximidade of data){ //a mesma lista de pontos do turista, mas essa contém a distancia que o turista esta daquele ponto
-
-            console.log(pontosProximidade.distancia <= this.distanciaMaximaPonto);
-            if(pontosProximidade.distancia <= this.distanciaMaximaPonto){
+          for(let pontosProximidade of data){ //a mesma lista de pontos do turista, mas essa contém a distancia que o turista esta daquele ponto            
+            if(pontosProximidade.distancia <= this.distanciaMaximaPonto && this.pontoProximoNosParaVisitar(pontosProximidade)){
               this.pontoProximo = pontosProximidade; //colocamos este ponto como o mais proximo
+              this.modalPontoProximo();
+              break;
             }
 
           }
+
         },
         err => {
           console.log(err);
@@ -113,6 +113,44 @@ export class HomePage {
 
     }
     
+  }
+
+  //Verifica se o ponto proximo esta no array de pontos do mapa. Somente pontos ainda não visitados aparecem são considerados
+  pontoProximoNosParaVisitar(pontoProximo){
+    for(let p of this.pontos){
+      if(p.ponto.id == pontoProximo.id){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  //abre o modal para exibir informações do ponto proximo
+  modalPontoProximo(){
+    let pontoProximo = this.pontoProximo;    
+    if(pontoProximo != undefined && !this.modalPontoProximoAberto){ //abre se o ponto proximo tiver sido encontrado e não existir nenhum outro modal aberto
+      this.modalPontoProximoAberto = true;
+
+      let modal = this.modalCtrl.create(PontoModalPage,{pontoRoteiro:pontoProximo});          
+      modal.present(); 
+
+      modal.onDidDismiss(() => {   
+
+        let novosPontos: Array<any> = new Array<any>();              
+
+        for(let p of this.pontos){
+          if(p.ponto.id != pontoProximo.id){
+            novosPontos.push(p);
+          }
+        }                       
+
+        this.pontoProximo = undefined;      
+        this.pontos = novosPontos;        
+        this.modalPontoProximoAberto = false; //informamos que não existe nenhum modal aberto
+
+      });
+
+    }
   }
 
   //centraliza a tela em cima da posição do usuário

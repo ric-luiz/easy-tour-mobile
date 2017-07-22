@@ -1,9 +1,3 @@
-<!--
-  Generated template for the PontoModalPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-toolbar color="easy-tour-bar">
@@ -20,14 +14,14 @@
 
 </ion-header>
 
-
-<ion-content>
+ 
+<ion-content class="tutorial-page">
   <ion-card>
-    <img src="assets/imagem/cultural/teste.jpg"/>
-    <div class="card-title">teste</div>        
+    <img src="assets/imagem/cultural/{{ponto.nome}}.jpg"/>
+    <div class="card-title">{{ponto.nome}}</div>        
     <ion-card-content text-justify>
       <p>
-        teste
+        {{ponto.descricao}}
       </p>
     </ion-card-content>
   </ion-card>

@@ -1,3 +1,4 @@
+import { PontoModalPage } from './../pages/ponto-modal/ponto-modal';
 import { PontosModalPage } from './../pages/pontos-modal/pontos-modal';
 import { CadastrarUsuarioPage } from './../pages/cadastrar-usuario/cadastrar-usuario';
 import { RoteirosModalPage } from './../pages/roteiros-modal/roteiros-modal';
@@ -25,7 +26,8 @@ import { LoginProvider } from '../providers/login/login';
     LoginPage,
     RoteirosModalPage,
     CadastrarUsuarioPage,
-    PontosModalPage
+    PontosModalPage,
+    PontoModalPage
   ],
   imports: [
     BrowserModule,    
@@ -39,7 +41,8 @@ import { LoginProvider } from '../providers/login/login';
     LoginPage,
     RoteirosModalPage,
     CadastrarUsuarioPage,
-    PontosModalPage
+    PontosModalPage,
+    PontoModalPage
   ],
   providers: [
     BackgroundGeolocation,        
