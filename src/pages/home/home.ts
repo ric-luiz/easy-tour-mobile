@@ -24,6 +24,10 @@ export class HomePage {
   categorias: Array<any>; //lista de categorias
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
   pontos: Array<any>; //lista de pontos de um roteiro
+  
+  roteiro: any; //recebe o roteiro escolhido pelo usuario
+  distanciaMaximaPonto: number = 0.02; //distancia maxima que o turista deve esta de um ponto. Em Km.
+  pontoProximo: any; //recebe o ponto mais proximo do turista de acordo com a distancia maxima
 
   servicoDirecao: any;
   mostrarDiracaoNoMapa: any;
@@ -85,9 +89,52 @@ export class HomePage {
   //verifica se o usuario esta perto de algum ponto de um roteiro
   verificarUsuarioPertoPonto(){
     console.log("Recuperando os pontos proximos ao usuario");
-    if(this.pontos != undefined && this.pontos.length > 0) { //se existe algum ponto sendo visto pelo usuario
-      this.homeProvider.recuperarPontosProximosAoUsuario();
-    }    
+
+    /*let latLng = {lat:this.locationTrackerProvider.lat,lng:this.locationTrackerProvider.lng};
+      this.homeProvider.recuperarPontosProximosAoUsuario(latLng,{id:2}).subscribe(
+        data => {
+          console.log(data);
+          let pontoMaisProximo;
+
+          for(let pontosProximidade of data){ //a mesma lista de pontos do turista, mas essa contém a distancia que o turista esta daquele ponto
+
+            console.log(pontosProximidade.distancia <= this.distanciaMaximaPonto);
+            if(pontosProximidade.distancia <= this.distanciaMaximaPonto){
+              this.pontoProximo = pontosProximidade; //colocamos este ponto como o mais proximo
+            }
+
+          }
+
+        },
+        err => {
+          console.log(err);
+        }
+      );*/
+
+    if(this.pontos != undefined && this.pontos.length > 0) { //se existe algum conjunto de pontos que o turista escolheu
+
+      let latLng = {lat:this.locationTrackerProvider.lat,lng:this.locationTrackerProvider.lng};
+      this.homeProvider.recuperarPontosProximosAoUsuario(latLng,this.roteiro).subscribe(
+        data => {
+          console.log(data);
+          let pontoMaisProximo;
+
+          for(let pontosProximidade of data){ //a mesma lista de pontos do turista, mas essa contém a distancia que o turista esta daquele ponto
+
+            console.log(pontosProximidade.distancia <= this.distanciaMaximaPonto);
+            if(pontosProximidade.distancia <= this.distanciaMaximaPonto){
+              this.pontoProximo = pontosProximidade; //colocamos este ponto como o mais proximo
+            }
+
+          }
+        },
+        err => {
+          console.log(err);
+        }
+      );
+
+    }
+    
   }
 
   //centraliza a tela em cima da posição do usuário
@@ -159,6 +206,7 @@ export class HomePage {
       data => {
         this.pontos = data;        
         if(this.pontos[0] != undefined){
+          this.roteiro = roteiroEscolhido;
           this.limparRotaAntiga();
           this.googleMapsClusterProvider.preencherLocalizacaoPonto(this.pontos);
           this.googleMapsClusterProvider.adicionarCluster(this.map,categoriaEscolhida);

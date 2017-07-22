@@ -34,8 +34,10 @@ export class HomeProvider {
   }
 
   //vai recuperar os pontos que estão proximos do usuario
-  recuperarPontosProximosAoUsuario(){      
-
+  recuperarPontosProximosAoUsuario(posicaoTurista,roteiroEscolhido){      
+    var url = this.apiName+'/ponto/proximos?lat='+posicaoTurista.lat+'&lng='+posicaoTurista.lng+'&roteiroId='+roteiroEscolhido.id;    
+    var response = this.http.get(url).map(res => res.json());
+    return response;
   }
 
 }

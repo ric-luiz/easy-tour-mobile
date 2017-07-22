@@ -10,18 +10,22 @@ export class CadastrarUsuarioProvider {
   constructor(public http: Http) {    
   }
 
-  casdtrarUsuario(usuario){
-    var url = this.apiName+'/usuario';    
+  casdtrarUsuario(usuario,callback1,callback2){
+    var url = this.apiName+'/contas';    
 
     let headers = new Headers();
     headers.append("Accept",'application/json');
     headers.append('Content-Type', 'application/json' );
     let options = new RequestOptions({headers: headers});
 
-    this.http.post(url,usuario,options).subscribe(data => {
+    let postUsuario = {email:usuario.email, login:usuario.login, senha:usuario.senha}; //somente estes 3 campos são necessários para efetuar o cadastro    
+
+    this.http.post(url,postUsuario,options).subscribe(data => {      
       console.log(data);
+      callback1();
     }, err =>{
       console.log(err);
+      callback2();
     });    
   }
 
