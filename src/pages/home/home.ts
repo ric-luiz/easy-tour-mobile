@@ -89,28 +89,6 @@ export class HomePage {
   //verifica se o usuario esta perto de algum ponto de um roteiro
   verificarUsuarioPertoPonto(){
     console.log("Recuperando os pontos proximos ao usuario");
-
-    /*let latLng = {lat:this.locationTrackerProvider.lat,lng:this.locationTrackerProvider.lng};
-      this.homeProvider.recuperarPontosProximosAoUsuario(latLng,{id:2}).subscribe(
-        data => {
-          console.log(data);
-          let pontoMaisProximo;
-
-          for(let pontosProximidade of data){ //a mesma lista de pontos do turista, mas essa contém a distancia que o turista esta daquele ponto
-
-            console.log(pontosProximidade.distancia <= this.distanciaMaximaPonto);
-            if(pontosProximidade.distancia <= this.distanciaMaximaPonto){
-              this.pontoProximo = pontosProximidade; //colocamos este ponto como o mais proximo
-            }
-
-          }
-
-        },
-        err => {
-          console.log(err);
-        }
-      );*/
-
     if(this.pontos != undefined && this.pontos.length > 0) { //se existe algum conjunto de pontos que o turista escolheu
 
       let latLng = {lat:this.locationTrackerProvider.lat,lng:this.locationTrackerProvider.lng};
