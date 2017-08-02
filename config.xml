@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="br.com.easy-tour.mobile" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Easy Tour</name>
+    <name>Easy Tour Brasil</name>
     <description>Aplicativo de turismo inteligente.</description>
     <author email="ricardoluiz508@gmail.com" href="http://www.easytourbrasil.com.br/">Easy Tour Brasil</author>
     <content src="index.html" />

@@ -1,8 +1,19 @@
 
 <ion-header>
   <ion-toolbar color="easy-tour-bar">
-    <ion-grid>
-        <ion-row>
+    <ion-grid no-margin no-padding>
+        <ion-row>           
+
+          <ion-col col-2 align-self-center>
+            <img src="assets/header/{{categoria}}.png"/>
+          </ion-col>
+
+          <ion-col col-8 align-self-center>
+            <ion-title>
+              Roteiro {{categoria}}
+            </ion-title>
+          </ion-col>
+
           <ion-col col-2 align-self-center>
             <ion-buttons start>
               <button ion-button (click)="fecharModal()">
@@ -11,11 +22,7 @@
               </button>
             </ion-buttons>
           </ion-col>
-          <ion-col col-10 align-self-center>
-            <ion-title>
-              Roteiro {{categoria}}
-            </ion-title>
-          </ion-col>
+
         </ion-row>
     </ion-grid>        
   </ion-toolbar>
@@ -50,18 +57,3 @@
 
   </ion-list>
 </ion-content>
-
-<ion-footer>
-    <ion-toolbar color="easy-tour-bar">
-      <ion-grid>
-        <ion-row>
-          <ion-col col-2 align-self-center><img src="assets/easy-tour.png"/></ion-col>
-          <ion-col col-10 align-self-center>
-            <ion-title color="easy-tour-bar-font" class="espacamento-top">        
-              Easy Tour Brasil
-            </ion-title>    
-          </ion-col>          
-        </ion-row>      
-      </ion-grid>                
-    </ion-toolbar>
-</ion-footer>

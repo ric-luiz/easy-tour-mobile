@@ -32,16 +32,30 @@
 <ion-menu [content]="content" side="right">
   <ion-header>
     <ion-toolbar color="easy-tour-bar">
-      <ion-title>Roteiros Easy-Tour</ion-title>
+      <ion-title>Roteiros Easy Tour Brasil</ion-title>
     </ion-toolbar>
   </ion-header>
  
   <ion-content class="cor-nav-bar">
 
-    <ion-list> 
-      <button *ngFor="let categoria of categorias" ion-item class="cor-nav-bar" color="easy-tour-bar" (click)="escolherRoteiroDeUmaCategoria(categoria)">        
-        {{categoria.nome}}
-      </button>      
+    <ion-list *ngFor="let categoria of categorias">
+                  
+      <button ion-item class="cor-nav-bar" color="easy-tour-bar" (click)="escolherRoteiroDeUmaCategoria(categoria)">        
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3 align-self-center>
+              <img src="assets/header/{{categoria.nome}}.png"/>
+              <img src="assets/header/barra.png"/>
+            </ion-col>
+            <ion-col col-9 align-self-center text-left>
+              {{categoria.nome}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </button>  
+
     </ion-list>
   </ion-content>
 
@@ -50,27 +64,29 @@
 <ion-nav #content swipeBackEnabled="false"></ion-nav>
 
 <ion-header>
-  <ion-navbar color="easy-tour-bar">      
+  <ion-toolbar color="easy-tour-bar">      
 
-    <ion-grid>
+    <ion-grid no-margin no-padding>
       <ion-row>        
-        <ion-col col-2 align-self-center><img src="{{nomeImagemCategoria}}"/></ion-col>
-        <ion-col col-1 align-self-center><img src="assets/header/barra.png"/></ion-col>
-        <ion-col col-5 align-self-center><ion-title  color="easy-tour-bar-font">{{nomeCategoria}}</ion-title></ion-col>                
-        <ion-col col-2 align-self-center>
-           <button class="cor-nav-bar" (click)="tracarRotaEntrePontosDoRoteiro()" ion-button>
-              <ion-icon color="primary" name="play"></ion-icon>
+        <ion-col col-2 align-self-center text-left>
+          <img src="{{nomeImagemCategoria}}"/>
+          <img src="assets/header/barra.png"/>
+        </ion-col>        
+        <ion-col col-6 align-self-center text-left><ion-title  color="easy-tour-bar-font">{{nomeCategoria}}</ion-title></ion-col>                
+        <ion-col col-2 align-self-center text-left>
+           <button (click)="tracarRotaEntrePontosDoRoteiro()" ion-button icon-only clear round large>              
+              <img src="assets/imagem/icone-play.png">
            </button>                    
         </ion-col>
-        <ion-col col-2 align-self-center>
-          <button class="cor-nav-bar" ion-button (click)="toggleLeftMenu()">
+        <ion-col col-2 align-self-center text-left>
+          <button color="easy-tour-bar-font" icon-only ion-button (click)="toggleLeftMenu()" clear>
             <ion-icon name="menu"></ion-icon>
           </button>
         </ion-col>        
       </ion-row>      
     </ion-grid>
 
-  </ion-navbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>  
@@ -81,13 +97,17 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar color="easy-tour-bar">            
-      <ion-grid>
+    <ion-toolbar color="easy-tour-bar">  
+
+      <ion-grid no-margin no-padding>
         <ion-row>
-          <ion-col col-2 align-self-center><img src="imagem/icone-marcador.png"/></ion-col>
-          <ion-col col-8 align-self-center><ion-title text-center color="easy-tour-bar-font">Selecionar Roteiro</ion-title></ion-col>
-          <ion-col col-2 align-self-center>
-            <button class="cor-nav-bar" ion-button (click)="toggleRightMenu()">
+          <ion-col col-2 align-self-center text-left>
+            <img src="assets/imagem/icone-marcador.png"/>
+            <img src="assets/header/barra.png"/>
+          </ion-col>          
+          <ion-col col-8 align-self-center text-left><ion-title color="easy-tour-bar-font">Selecionar Roteiro</ion-title></ion-col>
+          <ion-col col-2 align-self-center text-left>            
+            <button color="easy-tour-bar-font" ion-button icon-only clear (click)="toggleRightMenu()">
               <ion-icon name="menu"></ion-icon>
             </button>
           </ion-col>

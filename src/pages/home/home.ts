@@ -18,8 +18,8 @@ export class HomePage {
   map: any;
   marcador: any;
   conteudo: string;
-  nomeCategoria: string = 'Easy Tour'; //nome que vai ser exibido no header da pagina
-  nomeImagemCategoria: string = 'assets/header/Cultural.png'; //nome da imagem que sera colocada no header
+  nomeCategoria: string = 'Sol e Mar'; //nome que vai ser exibido no header da pagina
+  nomeImagemCategoria: string = 'assets/header/Sol e Mar.png'; //nome da imagem que sera colocada no header
 
   categorias: Array<any>; //lista de categorias
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
@@ -46,7 +46,7 @@ export class HomePage {
     this.loadMap();
     this.recuperarCategorias();       
     this.start();
-
+    this.iniciarAplicativoComSolemar();
   }
 
   loadMap(){    
@@ -85,6 +85,13 @@ export class HomePage {
 
     this.verificarUsuarioPertoPonto();
 
+  }
+
+  //Usado para exibir primeiro roteiro da categoria sol e mar
+  iniciarAplicativoComSolemar(){
+    let categoria = {nome: "Sol e Mar"};
+    let roteiro = {id:5};
+    this.recuperarPontosRoteiro(roteiro,categoria);
   }
 
   //verifica se o usuario esta perto de algum ponto de um roteiro
@@ -257,7 +264,7 @@ export class HomePage {
       this.exibirToastAlert('É necessário escolher um roteiro primeiro para traçar a rota.',6000);
     }
   }
-
+  
   //Vai exibir rota escolhida ao ativar o tracarRotaEntrePontosDoRoteiro
   exibirRotaNoMapa(enderecoPartida){    
     let ultimoPonto = this.googleMapsClusterProvider.pontosDoRoteiro.length - 1;
