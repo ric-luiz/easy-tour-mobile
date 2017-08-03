@@ -219,7 +219,7 @@ export class HomePage {
     );
     this.nomeCategoria = categoriaEscolhida.nome;
     this.nomeImagemCategoria = 'assets/header/'+categoriaEscolhida.nome+'.png';
-    this.toggleRightMenu();    
+    this.toggleMenuCategorias()   
     this.pontos = new Array<any>(); //resetamos o array de pontos quando vamos escolher outro roteiro. É necessário para evitar que seja exibido o modal de outros pontos de outros roteiros       
   }
 
@@ -335,12 +335,18 @@ export class HomePage {
     toast.present();
   }
 
-  toggleLeftMenu() {
-    this.menuCtrl.toggle();
+  //Vai a função de abrir e fechar o menu configurações
+  toggleMenuConfiguracoes() {
+    this.menuCtrl.enable(false,"categorias");
+    this.menuCtrl.enable(true,"configuracoes");
+    this.menuCtrl.toggle("configuracoes");
   }
 
-  toggleRightMenu() {
-    this.menuCtrl.toggle('right');
+  //Vai a função de abrir e fechar o menu categorias
+  toggleMenuCategorias() {
+    this.menuCtrl.enable(true,"categorias");
+    this.menuCtrl.enable(false,"configuracoes");
+    this.menuCtrl.toggle('categorias');
   }
 
 }

@@ -1,5 +1,5 @@
 <!--Menu esquerdo-->
-<ion-menu [content]="content" side="left">
+<ion-menu id="configuracoes" [content]="content" side="right">
   <ion-header>
     <ion-toolbar color="easy-tour-bar">
       <ion-title>Easy-Tour</ion-title>
@@ -29,7 +29,7 @@
 </ion-menu>
 
 <!--Menu direito-->
-<ion-menu [content]="content" side="right">
+<ion-menu id="categorias" [content]="content" side="right">
   <ion-header>
     <ion-toolbar color="easy-tour-bar">
       <ion-title>Roteiros Easy Tour Brasil</ion-title>
@@ -72,7 +72,7 @@
           <img src="{{nomeImagemCategoria}}"/>          
         </ion-col>        
 
-        <ion-col col-1 align-self-center text-left>
+        <ion-col col-1 align-self-center text-left> 
           <img src="assets/header/barra.png"/>
         </ion-col>
 
@@ -83,7 +83,7 @@
            </button>                    
         </ion-col>
         <ion-col col-2 align-self-center text-left>
-          <button color="easy-tour-bar-font" icon-only ion-button (click)="toggleLeftMenu()" clear>
+          <button color="easy-tour-bar-font" icon-only ion-button (click)="toggleMenuConfiguracoes()" clear>
             <ion-icon name="menu"></ion-icon>
           </button>
         </ion-col>        
@@ -113,7 +113,7 @@
           </ion-col>
           <ion-col col-7 align-self-center text-left><ion-title color="easy-tour-bar-font">Selecionar Roteiro</ion-title></ion-col>
           <ion-col col-2 align-self-center text-left>            
-            <button color="easy-tour-bar-font" ion-button icon-only clear (click)="toggleRightMenu()">
+            <button color="easy-tour-bar-font" ion-button icon-only clear (click)="toggleMenuCategorias()"> 
               <ion-icon name="menu"></ion-icon>
             </button>
           </ion-col>
