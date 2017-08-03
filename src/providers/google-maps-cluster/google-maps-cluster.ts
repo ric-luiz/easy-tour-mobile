@@ -15,6 +15,12 @@ export class GoogleMapsClusterProvider {
     this.pontosDoRoteiro = [];    
   }
 
+
+  /**
+   * Vai preencher o array de pontos com todos os pontos de um roteiro
+   * @author Ricardo Luiz <ricardoluiz508@gmail.com>
+   * @param pontos Array de pontos do roteiro de uma categoria escolhida   
+   */
   preencherLocalizacaoPonto(pontos){
     this.removerpontosDoRoteirodoMapa(); //remove os marcadores que ja estavam selecionado no roteiro (caso eles existam) 
 
@@ -27,8 +33,25 @@ export class GoogleMapsClusterProvider {
                                 };
       j++;
     }
+    
+  }
 
-    //console.log(this.pontosDoRoteiro);
+  /**
+   * vai centralizar a visualização do mapa nos pontos do roteiro escolhido
+   */
+  centralizarVisualizacaoMapaNosPontos(map,pontos){
+    if(map != undefined){      
+      let latLngBounds = new google.maps.LatLngBounds();
+
+      for(let i of pontos){ //montamos o array para o google saber como centralizar
+        latLngBounds.extend(new google.maps.LatLng(i.ponto.latitude,i.ponto.longitude));        
+      }
+      
+      //centralizando e mexendo no zoom
+      map.setCenter(latLngBounds.getCenter());
+      map.fitBounds(latLngBounds); 
+
+    }
   }
 
   //Adiciano no mapa os marcadores. Usa-se os pontos para fazer Isso

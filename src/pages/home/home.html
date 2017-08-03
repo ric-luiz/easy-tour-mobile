@@ -38,24 +38,22 @@
  
   <ion-content class="cor-nav-bar">
 
-    <ion-list *ngFor="let categoria of categorias">
+    <ion-list>
                   
-      <button ion-item class="cor-nav-bar" color="easy-tour-bar" (click)="escolherRoteiroDeUmaCategoria(categoria)">        
+      <button *ngFor="let categoria of categorias" ion-item class="cor-nav-bar" color="easy-tour-bar" (click)="escolherRoteiroDeUmaCategoria(categoria)"> 
 
-        <ion-grid no-margin no-padding>
+         <ion-grid no-margin no-padding>
           <ion-row>
             <ion-col col-3 align-self-center>
-              <img src="assets/header/{{categoria.nome}}.png"/>
-              <img src="assets/header/barra.png"/>
+              <img src="assets/header/{{categoria.nome}}.png"/>              
             </ion-col>
             <ion-col col-9 align-self-center text-left>
               {{categoria.nome}}
             </ion-col>
           </ion-row>
-        </ion-grid>
+        </ion-grid> 
 
       </button>  
-
     </ion-list>
   </ion-content>
 
@@ -95,7 +93,7 @@
 
 <ion-content>  
   <div #map id="map"></div> 
-  <ion-fab bottom right>
+  <ion-fab left bottom>
     <button ion-fab color="light" (click)="centralizarNoUsuario()"><ion-icon name="locate"></ion-icon></button>    
   </ion-fab>
 </ion-content>

@@ -233,6 +233,7 @@ export class HomePage {
           this.limparRotaAntiga();
           this.googleMapsClusterProvider.preencherLocalizacaoPonto(this.pontos);
           this.googleMapsClusterProvider.adicionarCluster(this.map,categoriaEscolhida);
+          this.googleMapsClusterProvider.centralizarVisualizacaoMapaNosPontos(this.map,this.pontos);
         } else {
           this.exibirToastAlert('Não existe pontos turísticos cadastrados para este roteiro',4000);
         }        
