@@ -23,14 +23,34 @@
     background: transparent !important;
 }
 
-.borda-login {
-    border-color: red;
-}
-
 .conteudo {
         background-image: url('../assets/bg-principal.png'); 
         width: 100%;
         //height: auto;
         background-repeat: no-repeat;
         background-size: 100% 100%;        
+}
+
+$SIDEMENU_TOP: #577a00;
+$SIDEMENU_BOTTOM: #7a9f1f;
+$SIDEMENU_TRANSPARENCY: rgba(255,255,255,0.4);
+
+.toolbar-background-md {
+    background: -webkit-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background-repeat: repeat-x;
+}
+
+.toolbar-background-ios{
+    background: -webkit-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background: linear-gradient(to bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
+    background-repeat: repeat-x;
+}
+
+.toolbar-title-md{
+    color: white;
 }

@@ -2,7 +2,7 @@
 <ion-menu id="configuracoes" [content]="content" side="right">
   <ion-header>
     <ion-toolbar color="easy-tour-bar">
-      <ion-title>Easy-Tour</ion-title>
+      <ion-title>Easy Tour Brasil</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -62,7 +62,7 @@
 <ion-nav #content swipeBackEnabled="false"></ion-nav>
 
 <ion-header>
-  <ion-toolbar color="easy-tour-bar">      
+  <ion-toolbar>      
 
     <ion-grid no-margin no-padding>
       <ion-row>        
@@ -74,7 +74,7 @@
           <img src="assets/header/barra.png"/>
         </ion-col>
 
-        <ion-col col-5 align-self-center text-left><ion-title  color="easy-tour-bar-font">{{nomeCategoria}}</ion-title></ion-col>                
+        <ion-col col-5 align-self-center text-left><ion-title>{{nomeCategoria}}</ion-title></ion-col>                
         <ion-col col-2 align-self-center text-left>
            <button (click)="tracarRotaEntrePontosDoRoteiro()" ion-button icon-only clear round large>              
               <img src="assets/imagem/icone-play.png">
@@ -99,7 +99,7 @@
 </ion-content>
 
 <ion-footer>
-    <ion-toolbar color="easy-tour-bar">  
+    <ion-toolbar>  
 
       <ion-grid no-margin no-padding>
         <ion-row>

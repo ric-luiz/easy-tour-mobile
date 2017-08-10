@@ -10,9 +10,11 @@ export class GoogleMapsClusterProvider {
 
   marcadoresCluster: any;  
   pontosDoRoteiro: any;
+  infoBoxes: any; //array que recebe as caixas de informações referentes ao ponto do roteiro
 
   constructor(public http: Http) {    
-    this.pontosDoRoteiro = [];    
+    this.pontosDoRoteiro = []; 
+    this.infoBoxes = [];   
   }
 
 
@@ -26,7 +28,9 @@ export class GoogleMapsClusterProvider {
 
     let j = 0;
     for(let i of pontos){      
-      this.pontosDoRoteiro[j] = {lat: i.ponto.latitude, 
+      this.pontosDoRoteiro[j] = {
+                                 id: i.ponto.id,
+                                 lat: i.ponto.latitude, 
                                  lng:i.ponto.longitude, 
                                  nome: i.ponto.nome,
                                  descricao: i.ponto.descricao
@@ -68,8 +72,19 @@ export class GoogleMapsClusterProvider {
 
         let marcador = new google.maps.Marker({
           position: location,
+          title: ponto.descricao,
           animation: google.maps.Animation.DROP,
           icon: {url : 'assets/icones/'+iconeCategoriaName+'.png'}
+        });
+
+        //controi o popup com informações do ponto
+        let infoWindow = new google.maps.InfoWindow({
+          content: '<p>'+ponto.nome+'</p> <p>'+ponto.descricao+'<\p>'
+        });
+        
+        //evento de clique pra exibir informações do ponto ao clicar no marcador
+        marcador.addListener('click', ()=>{
+          infoWindow.open(map,marcador);
         });
 
         return marcador;

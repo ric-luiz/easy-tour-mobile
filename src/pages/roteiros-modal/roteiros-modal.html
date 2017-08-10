@@ -36,25 +36,25 @@
   <ion-list no-border *ngFor="let roteiro of roteiros">     
 
     <ion-list-header>
-      {{roteiro.nome}}
+      <h2><b>{{roteiro.nome}}</b></h2>
     </ion-list-header>
 
     <ion-item>
       <ion-icon name='pin' item-start></ion-icon>
       Ver pontos turísticos? 
       <ion-note item-end>
-        <button ion-button round small clear color="easy-tour-bar" (click)="visualizarInformacoesPontosRoteiro(roteiro)">
+        <button ion-button round small color="easy-tour-bar" (click)="visualizarInformacoesPontosRoteiro(roteiro)">
           Sim
         </button>
       </ion-note>
-    </ion-item>
+    </ion-item> 
 
     <ion-item>
-      <ion-icon name='compass' item-start></ion-icon>
-      Iniciar o roteiro
+      <ion-icon name='map' item-start></ion-icon>
+      Iniciar roteiro?
       <ion-note item-end>
-        <button ion-button round small (click)="fecharModalComRoteiroEscolhido(roteiro)" color="easy-tour-bar">
-          Iniciar
+        <button ion-button round small (click)="fecharModalComRoteiroEscolhido(roteiro)" color="easy-tour-button-play">
+          Sim
         </button>
       </ion-note>
     </ion-item>            

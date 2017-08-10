@@ -2,31 +2,36 @@
   <ion-toolbar color="easy-tour-bar">
     <ion-grid>
         <ion-row>
-          <ion-col col-12 align-self-center>
+          
+          <ion-col col-10 align-self-center>
             <ion-title>
               {{nomeRoteiro}}
             </ion-title> 
           </ion-col>
+
+          <ion-col col-2 align-self-center>
+            <button ion-button (click)="fecharModal()" clear color="easy-tour-bar-font">
+              <span ion-text color="easy-tour-bar-font" showWhen="ios">Fechar</span>
+              <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+            </button>
+          </ion-col>
+
         </ion-row>
     </ion-grid>           
   </ion-toolbar>
 </ion-header>
 
 
-<ion-content class="tutorial-page">
+<ion-content class="conteudo">
 
   <ion-slides pager>
     <ion-slide *ngFor="let p of pontos" class="card-background-page">
-      <ion-toolbar>
-        <ion-buttons end small>
-          <button ion-button color="easy-tour-bar" (click)="fecharModal()">Voltar</button>
-        </ion-buttons>
-      </ion-toolbar>
 
       <ion-card>
-        <img src="assets/imagem/cultural/{{p.ponto.nome}}.jpg"/>
-        <div class="card-title">{{p.ponto.nome}}</div>        
+        <img src="assets/imagem/cultural/{{p.ponto.nome}}.jpg"/>        
         <ion-card-content text-justify>
+          <h1 color="easy-tour-bar" text-center>{{p.ponto.nome}}</h1>
+          <hr color="easy-tour-bar" class="linha">
           <p>
             {{p.ponto.descricao}}
           </p>

@@ -1,9 +1,6 @@
-page-pontos-modal {    
-}
-
-.tutorial-page {
-
-    background-image: url("../assets/imagem/bg-principal.png");
+page-pontos-modal { 
+  
+background-image: url("../assets/imagem/bg-principal.png");
 
   .toolbar-background {
     background: transparent;
@@ -29,7 +26,7 @@ page-pontos-modal {
   }
 
   p {
-    padding: 0 40px;
+    /* padding: 0 40px; */
     font-size: 14px;
     line-height: 1.5;
     color: #60646B;
@@ -38,33 +35,13 @@ page-pontos-modal {
     b {
       color: #000000;
     }
+
+    
   }
 
-}
+  .linha {
+      height: 1px;
+      background-color:#577a00;
+    }
 
-.card-background-page {
-
-  ion-card {
-    position: relative;
-    text-align: center;
-  }
-
-  .card-title {
-    position: absolute;
-    top: 36%;
-    font-size: 2.0em;
-    width: 100%;
-    font-weight: bold;
-    color: #fff;
-    background-color: rgba(87, 122, 0, 0.5);
-  }
-
-  .card-subtitle {
-    font-size: 1.0em;
-    position: absolute;
-    top: 52%;
-    width: 100%;
-    color: #fff;
-  }
-
-}
+} 
