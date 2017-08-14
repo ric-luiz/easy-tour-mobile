@@ -48,14 +48,14 @@ export class LocationTrackerProvider {
       this.backgroundGeolocation.start();
       
       //Foreground tracking
-      let options = {
+      /* let options = {
         frequency: 3000        
-      }
+      } */
 
-      this.watch = this.geolocation.watchPosition(options).subscribe((position: Geoposition) => {
+      this.watch = this.geolocation.watchPosition().subscribe((position: Geoposition) => {
       
         // Run update inside of Angular's zone
-        this.zone.run(() => {
+        this.zone.run(() => {                    
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
 

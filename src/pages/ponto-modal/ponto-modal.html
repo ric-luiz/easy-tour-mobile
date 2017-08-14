@@ -4,8 +4,8 @@
     <ion-grid>
         <ion-row>
           <ion-col col-12 align-self-center>
-            <ion-title>
-              Easy Tour Brasil
+            <ion-title text-center>
+              {{ponto.nome}}
             </ion-title> 
           </ion-col>
         </ion-row>
@@ -15,14 +15,68 @@
 </ion-header>
 
  
-<ion-content class="tutorial-page">
-  <ion-card>
-    <img src="assets/imagem/cultural/{{ponto.nome}}.jpg"/>
-    <div class="card-title">{{ponto.nome}}</div>        
-    <ion-card-content text-justify>
-      <p>
-        {{ponto.descricao}}
-      </p>
-    </ion-card-content>
-  </ion-card>
+<ion-content class="conteudo">
+  <ion-grid>
+    
+        <ion-row>
+          <ion-col col-12 align-self-center>
+            <p text-justify>
+              {{ponto.descricao}}
+            </p>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-4 align-self-center>
+             <img src="assets/imagem/guia-easy-tour-brasil.png"/> 
+          </ion-col>
+          <ion-col col-8 align-self-center>
+
+            <ion-grid>
+              
+              <ion-row>
+                <ion-col col-4>
+                  <img src="assets/imagem/icone-modal-audio.png"/>
+                </ion-col>
+                <ion-col col-4>
+                  <img src="assets/imagem/icone-modal-foto.png"/>
+                </ion-col>
+                <ion-col col-4>
+                  <img src="assets/imagem/icone-modal-video.png"/>
+                </ion-col>
+              </ion-row> 
+              
+              <ion-row>
+                <ion-col col-4>
+                  <img src="assets/imagem/icone-modal-facebook.png"/>
+                </ion-col>
+                <ion-col col-4>
+                  <img src="assets/imagem/icone-modal-instagram.png"/>
+                </ion-col>
+                <ion-col col-4>
+                  <img src="assets/imagem/icone-modal-twitter.png"/>
+                </ion-col>
+              </ion-row>
+
+            </ion-grid>
+
+          </ion-col>
+        </ion-row>
+
+    </ion-grid>
+  
 </ion-content>
+
+<ion-footer>
+
+  <ion-toolbar color="easy-tour-bar">
+    <ion-grid>
+        <ion-row>
+          <ion-col col-12 align-self-center text-center>
+            <button> Continuar </button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>           
+  </ion-toolbar>
+
+</ion-footer>

@@ -26,7 +26,7 @@ export class HomePage {
   pontos: Array<any>; //lista de pontos de um roteiro
   
   roteiro: any; //recebe o roteiro escolhido pelo usuario
-  distanciaMaximaPonto: number = 0.020; //distancia maxima que o turista deve esta de um ponto. Em Km.
+  distanciaMaximaPonto: number = 1000.0; //distancia maxima que o turista deve esta de um ponto. Em Km.
   pontoProximo: any; //recebe o ponto mais proximo do turista de acordo com a distancia maxima
   modalPontoProximoAberto: boolean = false; //serve para evitar que o modal seja aberto 2 vezes ao ficar dando refresh em recuperar a posição do device
 
@@ -227,7 +227,8 @@ export class HomePage {
   recuperarPontosRoteiro(roteiroEscolhido,categoriaEscolhida){ //a categoria serve para pegarmos a imagem correta para aqueles pontos
     this.homeProvider.recuperarPontosDoRoteiro(roteiroEscolhido).subscribe(
       data => {
-        this.pontos = data;        
+        this.pontos = data;                  
+        
         if(this.pontos[0] != undefined){
           this.roteiro = roteiroEscolhido;
           this.limparRotaAntiga();
