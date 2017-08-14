@@ -44,9 +44,9 @@ export class HomePage {
 
   ionViewDidLoad() {                   
     this.loadMap();
-    this.recuperarCategorias();       
-    this.start();
     this.iniciarAplicativoComSolemar();
+    this.recuperarCategorias();       
+    this.start();    
   }
 
   loadMap(){    
@@ -89,8 +89,8 @@ export class HomePage {
 
   //Usado para exibir primeiro roteiro da categoria sol e mar
   iniciarAplicativoComSolemar(){
-    let categoria = {nome: "Sol e Mar"};
-    let roteiro = {id:5};
+    let categoria = {nome: "Cultural"};
+    let roteiro = {id:2};
     this.recuperarPontosRoteiro(roteiro,categoria);
   }
 

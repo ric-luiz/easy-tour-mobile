@@ -16,24 +16,29 @@
 
  
 <ion-content class="conteudo">
-  <ion-grid>
+  <ion-grid no-padding no-margin class="tamanhoFull">
     
-        <ion-row>
-          <ion-col col-12 align-self-center>
-            <p text-justify>
+        <ion-row no-padding no-margin class="tamanhoSuperiorTexto">
+          <ion-col col-12 align-self-center class="tamanhoFull">
+            <p text-justify text-wrap padding no-margin class="tamanhoFull">
               {{ponto.descricao}}
             </p>
           </ion-col>
         </ion-row>
 
-        <ion-row>
-          <ion-col col-4 align-self-center>
-             <img src="assets/imagem/guia-easy-tour-brasil.png"/> 
+        <ion-row no-padding no-margin class="tamanhoInferiorMedia">
+          <ion-col col-4 align-self-center class="tamanhoFull">
+              <img padding-left src="assets/imagem/guia-easy-tour-brasil.png" width="100%" height="100%"/>              
           </ion-col>
-          <ion-col col-8 align-self-center>
+          <ion-col col-7 offset-1 align-self-center class="tamanhoFull">
 
             <ion-grid>
-              
+              <ion-row>
+                <ion-col col-12>
+                  <img src="assets/imagem/icone-modal-branco.png"/>
+                </ion-col>                
+              </ion-row>
+
               <ion-row>
                 <ion-col col-4>
                   <img src="assets/imagem/icone-modal-audio.png"/>
@@ -73,7 +78,7 @@
     <ion-grid>
         <ion-row>
           <ion-col col-12 align-self-center text-center>
-            <button> Continuar </button>
+            <button ion-button (click)="fecharModal()"> Continuar </button>
           </ion-col>
         </ion-row>
     </ion-grid>           

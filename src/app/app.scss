@@ -43,7 +43,7 @@ $SIDEMENU_TRANSPARENCY: rgba(255,255,255,0.4);
     background-repeat: repeat-x;
 }
 
-.toolbar-background-ios{
+.toolbar-background-ios {
     background: -webkit-gradient(left top, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
     background: -o-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
     background: -moz-linear-gradient(bottom right, $SIDEMENU_TOP, $SIDEMENU_BOTTOM);
@@ -51,7 +51,7 @@ $SIDEMENU_TRANSPARENCY: rgba(255,255,255,0.4);
     background-repeat: repeat-x;
 }
 
-.toolbar-title-md{
+.toolbar-title-md {
     color: white;
 }
 
