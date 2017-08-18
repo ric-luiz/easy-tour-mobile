@@ -19,7 +19,7 @@ export class HomePage {
   marcador: any;
   conteudo: string;
   nomeCategoria: string = 'Sol e Mar'; //nome que vai ser exibido no header da pagina
-  nomeImagemCategoria: string = 'assets/header/Sol e Mar.png'; //nome da imagem que sera colocada no header
+  nomeImagemCategoria: string = 'assets/header/Sol e Mar.svg'; //nome da imagem que sera colocada no header
 
   categorias: Array<any>; //lista de categorias
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
@@ -218,7 +218,7 @@ export class HomePage {
       }
     );
     this.nomeCategoria = categoriaEscolhida.nome;
-    this.nomeImagemCategoria = 'assets/header/'+categoriaEscolhida.nome+'.png';
+    this.nomeImagemCategoria = 'assets/header/'+categoriaEscolhida.nome+'.svg';
     this.toggleMenuCategorias()   
     this.pontos = new Array<any>(); //resetamos o array de pontos quando vamos escolher outro roteiro. É necessário para evitar que seja exibido o modal de outros pontos de outros roteiros       
   }
