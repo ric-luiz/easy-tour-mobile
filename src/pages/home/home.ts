@@ -26,7 +26,7 @@ export class HomePage {
   pontos: Array<any>; //lista de pontos de um roteiro
   
   roteiro: any; //recebe o roteiro escolhido pelo usuario
-  distanciaMaximaPonto: number = 1000.0; //distancia maxima que o turista deve esta de um ponto. Em Km.
+  distanciaMaximaPonto: number = 0.01; //distancia maxima que o turista deve esta de um ponto. Em Km.
   pontoProximo: any; //recebe o ponto mais proximo do turista de acordo com a distancia maxima
   modalPontoProximoAberto: boolean = false; //serve para evitar que o modal seja aberto 2 vezes ao ficar dando refresh em recuperar a posição do device
 
@@ -43,10 +43,10 @@ export class HomePage {
   }  
 
   ionViewDidLoad() {                   
-    this.loadMap();
-    this.iniciarAplicativoComSolemar();
+    this.loadMap();    
     this.recuperarCategorias();       
     this.start();    
+    this.iniciarAplicativoComSolemar();
   }
 
   loadMap(){    
@@ -78,10 +78,10 @@ export class HomePage {
     let latLng = new google.maps.LatLng(this.locationTrackerProvider.lat, this.locationTrackerProvider.lng);         
     this.marcador.setPosition(latLng);
 
-    if(!this.locationTrackerProvider.centralizou){ //caso ainda não tenha centralizado o usuario
+    /* if(!this.locationTrackerProvider.centralizou){ //caso ainda não tenha centralizado o usuario
       this.locationTrackerProvider.centralizou = true;      
       this.map.setCenter(latLng);
-    }
+    } */
 
     this.verificarUsuarioPertoPonto();
 
@@ -89,8 +89,8 @@ export class HomePage {
 
   //Usado para exibir primeiro roteiro da categoria sol e mar
   iniciarAplicativoComSolemar(){
-    let categoria = {nome: "Cultural"};
-    let roteiro = {id:2};
+    let categoria = {nome: "Sol e Mar"};
+    let roteiro = {id:5};
     this.recuperarPontosRoteiro(roteiro,categoria);
   }
 

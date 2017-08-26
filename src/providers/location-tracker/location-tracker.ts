@@ -11,7 +11,7 @@ export class LocationTrackerProvider {
   public lat: number = 0;
   public lng: number = 0;
 
-  public centralizou = null;
+  /* public centralizou = null; */
 
   constructor(public http: Http, public zone: NgZone, 
               public backgroundGeolocation: BackgroundGeolocation,
@@ -34,8 +34,8 @@ export class LocationTrackerProvider {
           this.lat = location.latitude;
           this.lng = location.longitude;
 
-          if(this.centralizou == null)
-            this.centralizou = false;
+          /* if(this.centralizou == null)
+            this.centralizou = false; */
 
           funcao();
 
@@ -59,8 +59,8 @@ export class LocationTrackerProvider {
           this.lat = position.coords.latitude;
           this.lng = position.coords.longitude;
 
-          if(this.centralizou == null)
-            this.centralizou = false;
+          /* if(this.centralizou == null)
+            this.centralizou = false; */
 
           funcao();
         });              
