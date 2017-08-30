@@ -5,13 +5,13 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class LoginProvider {
 
-  apiName = 'https://tour-easy-api.herokuapp.com';  
+  apiName = 'https://easy-tour-brasil-api.herokuapp.com';  
 
   constructor(public http: Http) {    
   }
 
   logarUsuario(usuario,logarFunction,erroLogarFunction){
-    var url = this.apiName+'/token';    
+    var url = this.apiName+'/tokens';    
     var credenciais = usuario.email+':'+usuario.senha;        
 
     let headers = new Headers();        

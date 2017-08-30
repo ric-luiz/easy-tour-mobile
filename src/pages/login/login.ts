@@ -37,14 +37,15 @@ export class LoginPage {
       return;
     }
 
-    this.login.logarUsuario(this.usuario,(token) =>{ 
+    this.gotMainPage();
+    /* this.login.logarUsuario(this.usuario,(token) =>{ 
       if(token != undefined){
         this.token = token;
         this.gotMainPage();
       }     
     },() => {
       this.exibirToastAlert('Usuário não existe. Por favor, crie um usuário ou verifique sua caixa de email para ativa-lo.',6000);
-    });
+    }); */
   }
 
   //caso ocorra um erro exibe uma mensagem informando o usuario

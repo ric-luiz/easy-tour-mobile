@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class CadastrarUsuarioProvider {
 
-  apiName = 'http://tour-easy-api.herokuapp.com';
+  apiName = 'https://easy-tour-brasil-api.herokuapp.com';
 
   constructor(public http: Http) {    
   }

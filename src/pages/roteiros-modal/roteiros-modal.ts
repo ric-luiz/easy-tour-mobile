@@ -31,7 +31,7 @@ export class RoteirosModalPage {
     this.viewCtrl.dismiss();
   }
 
-  fecharModalComRoteiroEscolhido(roteiroEscolhido){
+  fecharModalComRoteiroEscolhido(roteiroEscolhido){    
     this.viewCtrl.dismiss(roteiroEscolhido);
   }
 

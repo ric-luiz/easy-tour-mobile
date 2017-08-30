@@ -8,34 +8,34 @@ export class HomeProvider {
     return [[Http]];
   }
   
-  apiName = 'http://tour-easy-api.herokuapp.com';
+  apiName = 'https://easy-tour-brasil-api.herokuapp.com';
 
   constructor(public http: Http) {    
   }
 
   //recupera a lista de categorias
   recuperarCategorias(){
-    var url = this.apiName+'/categoria';
+    var url = this.apiName+'/categorias';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
   //recupera roteiros de uma categoria
   recuperarRoteiros(categoria){
-    var url = this.apiName+'/categoria/'+categoria.id+'/roteiro';
+    var url = this.apiName+'/categorias/'+categoria.id+'/roteiros';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
   recuperarPontosDoRoteiro(roteiro){
-    var url = this.apiName+'/roteiro/'+roteiro.id+'/ponto';
+    var url = this.apiName+'/roteiros/'+roteiro.id+'/pontos';
     var response = this.http.get(url).map(res => res.json());
     return response;
   }
 
   //vai recuperar os pontos que estão proximos do usuario
   recuperarPontosProximosAoUsuario(posicaoTurista,roteiroEscolhido){      
-    var url = this.apiName+'/ponto/proximos?lat='+posicaoTurista.lat+'&lng='+posicaoTurista.lng+'&roteiroId='+roteiroEscolhido.id;    
+    var url = this.apiName+'/pontos/proximos?lat='+posicaoTurista.lat+'&lng='+posicaoTurista.lng+'&roteiroId='+roteiroEscolhido.id;    
     var response = this.http.get(url).map(res => res.json());
     return response;
   }

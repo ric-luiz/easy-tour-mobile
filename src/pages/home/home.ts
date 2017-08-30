@@ -217,10 +217,9 @@ export class HomePage {
         this.exibirToastAlert('Ocorreu um erro ao buscar os roteiros. Verifique sua conexão com a intenet.',6000);
       }
     );
-    this.nomeCategoria = categoriaEscolhida.nome;
-    this.nomeImagemCategoria = 'assets/header/'+categoriaEscolhida.nome+'.svg';
-    this.toggleMenuCategorias()   
-    this.pontos = new Array<any>(); //resetamos o array de pontos quando vamos escolher outro roteiro. É necessário para evitar que seja exibido o modal de outros pontos de outros roteiros       
+
+    this.toggleMenuCategorias()       
+
   }
 
   //recupera todos os pontos do roteiro escolhido
@@ -321,6 +320,12 @@ export class HomePage {
     modal.onDidDismiss(roteiro => {      
       if(roteiro != undefined){        
         this.recuperarPontosRoteiro(roteiro,categoria);
+
+        //fazemos a troca definita de roteiro
+        this.nomeCategoria = categoria.nome;
+        this.nomeImagemCategoria = 'assets/header/'+categoria.nome+'.svg';
+        this.pontos = new Array<any>(); //resetamos o array de pontos quando vamos escolher outro roteiro. É necessário para evitar que seja exibido o modal de outros pontos de outros roteiros       
+
       }
     });
   }
