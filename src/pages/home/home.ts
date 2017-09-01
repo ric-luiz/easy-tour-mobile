@@ -18,15 +18,15 @@ export class HomePage {
   map: any;
   marcador: any;
   conteudo: string;
-  nomeCategoria: string = 'Sol e Mar'; //nome que vai ser exibido no header da pagina
-  nomeImagemCategoria: string = 'assets/header/Sol e Mar.svg'; //nome da imagem que sera colocada no header
+  nomeCategoria: string = 'Histórico'; //nome que vai ser exibido no header da pagina
+  nomeImagemCategoria: string = 'assets/header/Histórico.svg'; //nome da imagem que sera colocada no header
 
   categorias: Array<any>; //lista de categorias
   roteiros: Array<any>;  //lista dos roteiros de uma categoria
   pontos: Array<any>; //lista de pontos de um roteiro
   
   roteiro: any; //recebe o roteiro escolhido pelo usuario
-  distanciaMaximaPonto: number = 0.01; //distancia maxima que o turista deve esta de um ponto. Em Km.
+  distanciaMaximaPonto: number = 1000.01; //distancia maxima que o turista deve esta de um ponto. Em Km.
   pontoProximo: any; //recebe o ponto mais proximo do turista de acordo com a distancia maxima
   modalPontoProximoAberto: boolean = false; //serve para evitar que o modal seja aberto 2 vezes ao ficar dando refresh em recuperar a posição do device
 
@@ -89,8 +89,8 @@ export class HomePage {
 
   //Usado para exibir primeiro roteiro da categoria sol e mar
   iniciarAplicativoComSolemar(){
-    let categoria = {nome: "Sol e Mar"};
-    let roteiro = {id:5};
+    let categoria = {nome: "Histórico"};
+    let roteiro = {id:2};
     this.recuperarPontosRoteiro(roteiro,categoria);
   }
 
