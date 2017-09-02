@@ -41,7 +41,7 @@
 
               <ion-row>
                 <ion-col col-4>
-                  <img src="assets/imagem/icone-modal-audio.png"/>
+                  <img src="assets/imagem/icone-modal-audio.png" (click)="tocarAudio()"/>
                 </ion-col>
                 <ion-col col-4>
                   <img src="assets/imagem/icone-modal-foto.png" (click)="abrirImagensPonto()"/>
@@ -85,3 +85,10 @@
   </ion-toolbar>
 
 </ion-footer>
+
+<script>
+  function tocarAudio(){
+    var audio = new Audio('assets/voz-guia.mp3');
+    audio.play();
+  }
+</script>

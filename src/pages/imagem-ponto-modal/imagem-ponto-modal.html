@@ -4,8 +4,7 @@
         <ion-row>
           
           <ion-col col-10 align-self-center>
-            <ion-title>
-              {{nomeRoteiro}}
+            <ion-title>                          
             </ion-title> 
           </ion-col>
 
@@ -21,23 +20,11 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="conteudo">
 
-  <ion-slides pager>
-    <ion-slide *ngFor="let p of pontos" class="card-background-page">
-
-      <ion-card class="tamanhoCartao">
-        <img src="assets/imagem/roteiros/{{p.ponto.id}}.jpg"/>        
-        <ion-card-content text-justify>
-          <h1 color="easy-tour-bar" text-center>{{p.ponto.nome}}</h1>
-          <hr color="easy-tour-bar" class="linha">
-          <p>
-            {{p.ponto.descricao}}
-          </p>
-        </ion-card-content>
-      </ion-card>      
-    </ion-slide>    
+  <ion-slides no-margin no-padding pager>
+    <ion-slide *ngFor="let p of pontos">
+      <img class="espacamaento" src="assets/imagem/pontos/{{p.ponto.nome}}.jpg"/>      
+    </ion-slide>
   </ion-slides>
-
 </ion-content>
