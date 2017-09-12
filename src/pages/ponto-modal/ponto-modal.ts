@@ -9,6 +9,7 @@ import { IonicPage, NavController, NavParams, ViewController, ModalController } 
 })
 export class PontoModalPage {
   
+  fonteText: number = 14; //tamanho da fonte usada na page modal  
   ponto: any = this.navParams.get('pontoRoteiro');
   audio: any = new Audio('assets/voz-guia.mp3');
 
@@ -37,6 +38,10 @@ export class PontoModalPage {
     this.audio.pause();
     this.audio.currentTime = 0;    
     this.audio.play();
+  }  
+
+  aumentarFonte(valor){    
+    this.fonteText += valor;
   }
 
 }

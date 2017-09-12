@@ -15,12 +15,13 @@
 </ion-header>
 
  
-<ion-content class="conteudo">
+<ion-content class="conteudo">  
+
   <ion-grid no-padding no-margin class="tamanhoFull">
     
         <ion-row no-padding no-margin class="tamanhoSuperiorTexto">
           <ion-col col-12 align-self-center class="tamanhoFull">
-            <p text-justify text-wrap padding no-margin class="tamanhoFull">
+            <p text-justify text-wrap padding no-margin class="tamanhoFull" [ngStyle]="{'font-size': fonteText+'pt' }">
               {{ponto.descricao}}
             </p>
           </ion-col>
@@ -34,8 +35,11 @@
 
             <ion-grid>
               <ion-row>
-                <ion-col col-12>
-                  <img src="assets/imagem/icone-modal-branco.png"/>
+                <ion-col col-12>                  
+                  <div float-right>
+                      <button ion-button clear (click)="aumentarFonte(0.2)">A+</button>
+                      <button ion-button clear (click)="aumentarFonte(-0.2)">A-</button>
+                  </div>
                 </ion-col>                
               </ion-row>
 
@@ -85,10 +89,3 @@
   </ion-toolbar>
 
 </ion-footer>
-
-<script>
-  function tocarAudio(){
-    var audio = new Audio('assets/voz-guia.mp3');
-    audio.play();
-  }
-</script>
