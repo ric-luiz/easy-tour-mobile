@@ -22,7 +22,7 @@ background-image: url("../assets/imagem/bg-principal.png");
 
   p {
     /* padding: 0 40px; */
-    font-size: 14px;
+    font-size: 14pt;
     line-height: 1.5;
     color: #60646B;
     text-indent:10%;
@@ -41,6 +41,14 @@ background-image: url("../assets/imagem/bg-principal.png");
   
   .tamanhoCartao{
     height: 93%;
+  }
+
+  .fonteElementos{
+    font-size: 14pt;
+  }
+
+  .fonteEstrela{
+    font-size: 25pt;
   }
 
 } 

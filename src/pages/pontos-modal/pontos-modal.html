@@ -32,9 +32,49 @@
         <ion-card-content text-justify>
           <h1 color="easy-tour-bar" text-center>{{p.ponto.nome}}</h1>
           <hr color="easy-tour-bar" class="linha">
-          <p>
+          <!-- <p>
             {{p.ponto.descricao}}
-          </p>
+          </p> -->
+          <ion-grid class="fonteElementos">
+              <ion-row text-center>
+                <ion-col col-12 class="fonteEstrela">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star-half"></ion-icon>
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-2>
+                  <ion-icon name="calendar"></ion-icon>
+                </ion-col>
+                <ion-col col-10>
+                  Seg - Ter Qua - Qui - Sex
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-2>
+                  <ion-icon name="time"></ion-icon>
+                </ion-col>
+                <ion-col col-10>
+                  08:00 às 18:00
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-2>
+                  <ion-icon name="chatboxes"></ion-icon>
+                </ion-col>
+                <ion-col col-10>
+                  Muito Legal, adorei!!!
+                </ion-col>
+              </ion-row>
+
+            </ion-grid>
+
         </ion-card-content>
       </ion-card>      
     </ion-slide>    
